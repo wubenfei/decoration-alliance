@@ -8,9 +8,9 @@
 <!--        <version>1.0-SNAPSHOT</version>-->
 <!--    </parent>-->
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>com.woniu</groupId>
     <artifactId>entity</artifactId>
-
+    <version>1.0-SNAPSOT</version>
     <name>entity</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
