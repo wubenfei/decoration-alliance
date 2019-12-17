@@ -1,4 +1,4 @@
-package com.woniuxy.eurekaservice1;
+package com.ours.eurekaservice1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

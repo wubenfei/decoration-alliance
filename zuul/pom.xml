@@ -8,7 +8,7 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.woniu</groupId>
+    <groupId>com.ours</groupId>
     <artifactId>zuul</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>zuul</name>
@@ -43,7 +43,7 @@
         </dependency>
         <!--        实体类的依赖-->
             <dependency>
-                <groupId>com.woniu</groupId>
+                <groupId>com.ours</groupId>
                 <artifactId>entity</artifactId>
                 <version>1.0-SNAPSHOT</version>
         </dependency>
