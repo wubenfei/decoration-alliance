@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.department.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.ours.entity.Department">
+    <!--@mbg.generated-->
+    <!--@Table department-->
+    <id column="dep_id" jdbcType="INTEGER" property="depId" />
+    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    dep_id, dep_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from department
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="dep_id" keyProperty="depId" parameterType="com.ours.entity.Department" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into department (dep_name)
+    values (#{depName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="dep_id" keyProperty="depId" parameterType="com.ours.entity.Department" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="depName != null">
+        dep_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="depName != null">
+        #{depName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.Department">
+    <!--@mbg.generated-->
+    update department
+    <set>
+      <if test="depName != null">
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ours.entity.Department">
+    <!--@mbg.generated-->
+    update department
+    set dep_name = #{depName,jdbcType=VARCHAR}
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </update>
+</mapper>
