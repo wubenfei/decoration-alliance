@@ -1,43 +1,30 @@
 package com.ours.department.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import com.ours.entity.Department;
-import com.ours.department.mapper.DepartmentMapper;
-@Service
-public class DepartmentService{
+import org.springframework.stereotype.Repository;
 
-    @Resource
-    private DepartmentMapper departmentMapper;
+import java.util.List;
 
-    
-    public int deleteByPrimaryKey(Integer depId) {
-        return departmentMapper.deleteByPrimaryKey(depId);
-    }
+@Repository
+public interface DepartmentService{
 
-    
-    public int insert(Department record) {
-        return departmentMapper.insert(record);
-    }
+    public int deleteByPrimaryKey(Integer depId);
 
-    
-    public int insertSelective(Department record) {
-        return departmentMapper.insertSelective(record);
-    }
 
-    
-    public Department selectByPrimaryKey(Integer depId) {
-        return departmentMapper.selectByPrimaryKey(depId);
-    }
+    public int insert(Department record);
 
-    
-    public int updateByPrimaryKeySelective(Department record) {
-        return departmentMapper.updateByPrimaryKeySelective(record);
-    }
 
-    
-    public int updateByPrimaryKey(Department record) {
-        return departmentMapper.updateByPrimaryKey(record);
-    }
+    public int insertSelective(Department record);
 
+
+    public Department selectByPrimaryKey(Integer depId);
+
+
+    public int updateByPrimaryKeySelective(Department record);
+
+
+    public int updateByPrimaryKey(Department record);
+
+
+    List<Department> selectDeps();
 }

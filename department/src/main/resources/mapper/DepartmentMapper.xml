@@ -58,4 +58,8 @@
     set dep_name = #{depName,jdbcType=VARCHAR}
     where dep_id = #{depId,jdbcType=INTEGER}
   </update>
+<!--  select all department-->
+  <select id="selectDeps" resultType="com.ours.entity.Department">
+    select * from department
+  </select>
 </mapper>
