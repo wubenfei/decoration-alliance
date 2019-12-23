@@ -24,5 +24,5 @@ public interface StaffService{
      * @param depId
      * @return
      */
-    List<Staff> selectDepMembersByDepId(int depId);
+    List<Staff> selectDepMembersByDepId(String depId);
 }

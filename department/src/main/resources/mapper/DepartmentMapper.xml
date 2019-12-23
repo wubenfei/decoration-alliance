@@ -4,39 +4,46 @@
   <resultMap id="BaseResultMap" type="com.ours.entity.Department">
     <!--@mbg.generated-->
     <!--@Table department-->
-    <id column="dep_id" jdbcType="INTEGER" property="depId" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dep_id" jdbcType="VARCHAR" property="depId" />
     <result column="dep_name" jdbcType="VARCHAR" property="depName" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    dep_id, dep_name
+    id, dep_id, dep_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
     from department
-    where dep_id = #{depId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from department
-    where dep_id = #{depId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="dep_id" keyProperty="depId" parameterType="com.ours.entity.Department" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into department (dep_name)
-    values (#{depName,jdbcType=VARCHAR})
+    insert into department (id,dep_id,dep_name)
+    values (#{id,jdbcType=INTEGER},#{depId,jdbcType=VARCHAR},#{depName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="dep_id" keyProperty="depId" parameterType="com.ours.entity.Department" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into department
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="depName != null">
         dep_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="depName != null">
         #{depName,jdbcType=VARCHAR},
       </if>
@@ -46,20 +53,32 @@
     <!--@mbg.generated-->
     update department
     <set>
+      <if test="depId != null">
+        dep_id = #{depId,jdbcType=VARCHAR},
+      </if>
       <if test="depName != null">
         dep_name = #{depName,jdbcType=VARCHAR},
       </if>
     </set>
-    where dep_id = #{depId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ours.entity.Department">
     <!--@mbg.generated-->
     update department
-    set dep_name = #{depName,jdbcType=VARCHAR}
-    where dep_id = #{depId,jdbcType=INTEGER}
+    set dep_id = #{depId,jdbcType=VARCHAR},
+      dep_name = #{depName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-<!--  select all department-->
+<!--以下为自定义-->
+  <!--  select all department-->
   <select id="selectDeps" resultType="com.ours.entity.Department">
     select * from department
   </select>
+  <!--    根据部门编号查询部门-->
+  <select id="selectByDepId" resultMap="BaseResultMap">
+    select *  from department d where dep_id = #{depId}
+  </select>
+  <delete id="deleteByDepId" parameterType="STRING">
+    delete from department where dep_id = #{depId}
+  </delete>
 </mapper>

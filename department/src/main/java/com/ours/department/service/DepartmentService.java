@@ -1,30 +1,27 @@
 package com.ours.department.service;
 
 import com.ours.entity.Department;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface DepartmentService{
 
-    public int deleteByPrimaryKey(Integer depId);
 
+    int deleteByPrimaryKey(Integer id);
 
-    public int insert(Department record);
+    int insert(Department record);
 
+    int insertSelective(Department record);
 
-    public int insertSelective(Department record);
+    Department selectByPrimaryKey(Integer id);
 
+    int updateByPrimaryKeySelective(Department record);
 
-    public Department selectByPrimaryKey(Integer depId);
-
-
-    public int updateByPrimaryKeySelective(Department record);
-
-
-    public int updateByPrimaryKey(Department record);
-
-
+    int updateByPrimaryKey(Department record);
+//    以下为自定义
     List<Department> selectDeps();
+
+    Department selectByDepId(String depId);
+
+    int deleteByDepId(String depId);
 }

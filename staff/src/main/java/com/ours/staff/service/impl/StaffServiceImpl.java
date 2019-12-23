@@ -49,7 +49,7 @@ public class StaffServiceImpl implements StaffService{
      * @return
      */
     @Override
-    public List<Staff> selectDepMembersByDepId(int depId) {
+    public List<Staff> selectDepMembersByDepId(String depId) {
         List<Staff> taffs = staffMapper.selectDepMembersByDepId(depId);
         return taffs;
     }

@@ -13,6 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,13 +51,13 @@ public class DepartmentController {
      * @return DepForm
      */
     @GetMapping("getDetail")
-    public DepForm getDepDetail(Integer depId,
+    public DepForm getDepDetail(String depId,
                                 HttpSession session,
                                 HttpServletRequest request
                                ){
         System.out.println("请求进入getDepDetail："+depId);
         // 查询部门
-        Department department = departmentService.selectByPrimaryKey(depId);
+        Department department = departmentService.selectByDepId(depId);
         // 查询部门成员
         System.out.println("staffController:"+staffController);
         MultiValueMap map = new LinkedMultiValueMap<String,Object>();
@@ -109,5 +110,25 @@ public class DepartmentController {
         List<Staff> forObject = restTemplate.postForObject(url, httpEntity, List.class);
         System.out.println("forObject:"+forObject);
         return forObject;
+    }
+    /**
+     * 删除部门
+     */
+    @RequestMapping("delDep")
+    public boolean delDep(String depId){
+        System.out.println("需要执行删除的部门id为："+depId);
+        int i = departmentService.deleteByDepId(depId);
+        return i>0?true:false;
+    }
+
+    @RequestMapping("addDep")
+    public Department addDep(String newDepName,String newDepId){
+        Department newDepartment = new Department();
+        newDepartment.setDepName(newDepName);
+        newDepartment.setDepId(newDepId);
+        int insert = departmentService.insert(newDepartment);
+//        新增部门成功后，将新数据返回
+        Department dep = departmentService.selectByDepId(newDepId);
+        return insert>0?dep:null;
     }
 }

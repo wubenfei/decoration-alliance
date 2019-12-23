@@ -1,21 +1,36 @@
 package com.ours.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class Department {
-    /**
-    * 部门id
-    */
-    private Integer depId;
+    private Integer id;
 
     /**
-    * 部门名字
-    */
+     * 部门id
+     */
+    private String depId;
+
+    /**
+     * 部门名字
+     */
     private String depName;
 
-    public Integer getDepId() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDepId() {
         return depId;
     }
 
-    public void setDepId(Integer depId) {
+    public void setDepId(String depId) {
         this.depId = depId;
     }
 

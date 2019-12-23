@@ -1,8 +1,6 @@
 package com.ours.staff.mapper;
 
-import com.ours.entity.Staff;
-
-import java.util.List;
+import com.ours.entity.Staff;import java.util.List;
 
 public interface StaffMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,10 +16,9 @@ public interface StaffMapper {
     int updateByPrimaryKey(Staff record);
 
     /**
-     * @Auth:MrW
      * @param depId
      * @return
+     * @Auth:MrW
      */
-    List<Staff> selectDepMembersByDepId(int depId);
-
+    List<Staff> selectDepMembersByDepId(String depId);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepForm {
-    private int depId;
+    private String depId;
     private String depName;
     private int headCount;
     private List<Staff> staffs;

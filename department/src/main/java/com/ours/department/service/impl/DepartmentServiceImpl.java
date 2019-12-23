@@ -9,13 +9,14 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService{
+
     @Resource
     private DepartmentMapper departmentMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer depId) {
-        return departmentMapper.deleteByPrimaryKey(depId);
+    public int deleteByPrimaryKey(Integer id) {
+        return departmentMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -29,8 +30,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department selectByPrimaryKey(Integer depId) {
-        return departmentMapper.selectByPrimaryKey(depId);
+    public Department selectByPrimaryKey(Integer id) {
+        return departmentMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -43,10 +44,22 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentMapper.updateByPrimaryKey(record);
     }
 
+//    以下为自定义
     @Override
     public List<Department> selectDeps() {
         System.out.println("草泥马 我的数据被你吃了？"+departmentMapper.selectDeps());
         return departmentMapper.selectDeps();
     }
 
+    @Override
+    public Department selectByDepId(String depId) {
+        Department department = departmentMapper.selectByDepId(depId);
+        return department;
+    }
+
+    @Override
+    public int deleteByDepId(String depId) {
+        int i = departmentMapper.deleteByDepId(depId);
+        return i;
+    }
 }
