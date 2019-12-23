@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class StaffServiceImpl implements StaffService{
+public class StaffServiceImpl implements StaffService {
 
     @Resource
     private StaffMapper staffMapper;
@@ -43,10 +43,11 @@ public class StaffServiceImpl implements StaffService{
     public int updateByPrimaryKey(Staff record) {
         return staffMapper.updateByPrimaryKey(record);
     }
+
     /**
-     * @Auth:MrW
      * @param depId
      * @return
+     * @Auth:MrW
      */
     @Override
     public List<Staff> selectDepMembersByDepId(String depId) {
@@ -55,3 +56,4 @@ public class StaffServiceImpl implements StaffService{
     }
 
 }
+

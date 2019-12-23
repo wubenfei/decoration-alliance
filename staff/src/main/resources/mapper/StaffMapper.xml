@@ -6,6 +6,7 @@
     <!--@Table staff-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="job_number" jdbcType="VARCHAR" property="jobNumber" />
     <result column="wages" jdbcType="VARCHAR" property="wages" />
     <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
@@ -21,8 +22,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, url, wages, staff_name, phone, `password`, `status`, role_id, role_name, tel, 
-    addr, id_card, join_date, dismission_date
+    id, url, job_number, wages, staff_name, phone, `password`, `status`, role_id, role_name, 
+    tel, addr, id_card, join_date, dismission_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -36,28 +37,28 @@
     delete from staff
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ours.entity.Staff">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Staff" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into staff (id, url, wages, 
+    insert into staff (url, job_number, wages, 
       staff_name, phone, `password`, 
       `status`, role_id, role_name, 
       tel, addr, id_card, 
       join_date, dismission_date)
-    values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{wages,jdbcType=VARCHAR}, 
+    values (#{url,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, #{wages,jdbcType=VARCHAR}, 
       #{staffName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
       #{joinDate,jdbcType=DATE}, #{dismissionDate,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.ours.entity.Staff">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Staff" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into staff
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="url != null">
         url,
+      </if>
+      <if test="jobNumber != null">
+        job_number,
       </if>
       <if test="wages != null">
         wages,
@@ -97,11 +98,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null">
+        #{jobNumber,jdbcType=VARCHAR},
       </if>
       <if test="wages != null">
         #{wages,jdbcType=VARCHAR},
@@ -148,6 +149,9 @@
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
+      <if test="jobNumber != null">
+        job_number = #{jobNumber,jdbcType=VARCHAR},
+      </if>
       <if test="wages != null">
         wages = #{wages,jdbcType=VARCHAR},
       </if>
@@ -191,6 +195,7 @@
     <!--@mbg.generated-->
     update staff
     set url = #{url,jdbcType=VARCHAR},
+      job_number = #{jobNumber,jdbcType=VARCHAR},
       wages = #{wages,jdbcType=VARCHAR},
       staff_name = #{staffName,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},

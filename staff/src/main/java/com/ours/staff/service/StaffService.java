@@ -4,7 +4,7 @@ import com.ours.entity.Staff;
 
 import java.util.List;
 
-public interface StaffService{
+public interface StaffService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -20,9 +20,10 @@ public interface StaffService{
     int updateByPrimaryKey(Staff record);
 
     /**
-     * @Auth:MrW
      * @param depId
      * @return
+     * @Auth:MrW
      */
     List<Staff> selectDepMembersByDepId(String depId);
 }
+
