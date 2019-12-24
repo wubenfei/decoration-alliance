@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.friendlyCompany.dao.FriendlycompanyMapper">
+    <resultMap id="BaseResultMap" type="com.ours.friendlyCompany.entity.Friendlycompany">
+        <!--@mbg.generated-->
+        <!--@Table friendlycompany-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="friendly_company_kind" jdbcType="VARCHAR" property="friendlyCompanyKind"/>
+        <result column="friendly_company_value" jdbcType="VARCHAR" property="friendlyCompanyValue"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, friendly_company_kind, friendly_company_value, role_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from friendlycompany
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from friendlycompany
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.friendlyCompany.entity.Friendlycompany"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into friendlycompany (friendly_company_kind, friendly_company_value,
+        role_id)
+        values (#{friendlyCompanyKind,jdbcType=VARCHAR}, #{friendlyCompanyValue,jdbcType=VARCHAR},
+        #{roleId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.ours.friendlyCompany.entity.Friendlycompany" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into friendlycompany
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="friendlyCompanyKind != null">
+                friendly_company_kind,
+            </if>
+            <if test="friendlyCompanyValue != null">
+                friendly_company_value,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="friendlyCompanyKind != null">
+                #{friendlyCompanyKind,jdbcType=VARCHAR},
+            </if>
+            <if test="friendlyCompanyValue != null">
+                #{friendlyCompanyValue,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.friendlyCompany.entity.Friendlycompany">
+        <!--@mbg.generated-->
+        update friendlycompany
+        <set>
+            <if test="friendlyCompanyKind != null">
+                friendly_company_kind = #{friendlyCompanyKind,jdbcType=VARCHAR},
+            </if>
+            <if test="friendlyCompanyValue != null">
+                friendly_company_value = #{friendlyCompanyValue,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.friendlyCompany.entity.Friendlycompany">
+        <!--@mbg.generated-->
+        update friendlycompany
+        set friendly_company_kind = #{friendlyCompanyKind,jdbcType=VARCHAR},
+        friendly_company_value = #{friendlyCompanyValue,jdbcType=VARCHAR},
+        role_id = #{roleId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="queryAllValue" resultType="java.util.Map">
+      select * from friendlycompany;
+    </select>
+    <!--<insert id="insertBySome">
+      insert into contract
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="company_name != null">
+          company_name,
+        </if>
+        <if test="company_address != null">
+          company_address,
+        </if>
+        <if test="intime != null">
+          company_intime,
+        </if>
+        <if test="company_phone != null">
+          company_phone,
+        </if>
+        <if test="company_rephone != null">
+          company_rephone,
+        </if>
+        <if test="company_idcard != null">
+          company_idcard,
+        </if>
+        <if test="company_idname != null">
+          company_idname
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="company_name != null">
+          #{company_name,jdbcType=VARCHAR},
+        </if>
+        <if test="company_address != null">
+          #{company_address},
+        </if>
+        <if test="intime != null">
+          #{intime},
+        </if>
+        <if test="company_phone != null">
+          #{company_phone},
+        </if>
+        <if test="company_rephone != null">
+          #{company_rephone},
+        </if>
+        <if test="company_idcard != null">
+          #{company_idcard},
+        </if>
+        <if test="company_idname != null">
+          #{company_idname}
+        </if>
+      </trim>
+    </insert>-->
+</mapper>
