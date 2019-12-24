@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.contract.dao.DecorationCompanyMapper">
+    <resultMap id="BaseResultMap" type="com.ours.contract.entity.DecorationCompany">
+        <!--@mbg.generated-->
+        <!--@Table decoration_company-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="company_address" jdbcType="VARCHAR" property="companyAddress"/>
+        <result column="company_synopsis" jdbcType="VARCHAR" property="companySynopsis"/>
+        <result column="company_intime" jdbcType="TIMESTAMP" property="companyIntime"/>
+        <result column="company_phone" jdbcType="VARCHAR" property="companyPhone"/>
+        <result column="company_rephone" jdbcType="VARCHAR" property="companyRephone"/>
+        <result column="company_idcard" jdbcType="VARCHAR" property="companyIdcard"/>
+        <result column="company_idname" jdbcType="VARCHAR" property="companyIdname"/>
+        <result column="company_status" jdbcType="VARCHAR" property="companyStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `password`, company_name, company_address, company_synopsis, company_intime,
+        company_phone, company_rephone, company_idcard, company_idname, company_status
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from decoration_company
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from decoration_company
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.DecorationCompany"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into decoration_company (`password`, company_name, company_address,
+        company_synopsis, company_intime, company_phone,
+        company_rephone, company_idcard, company_idname,
+        company_status)
+        values (#{password,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR},
+        #{companySynopsis,jdbcType=VARCHAR}, #{companyIntime,jdbcType=TIMESTAMP}, #{companyPhone,jdbcType=VARCHAR},
+        #{companyRephone,jdbcType=VARCHAR}, #{companyIdcard,jdbcType=VARCHAR}, #{companyIdname,jdbcType=VARCHAR},
+        #{companyStatus,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.ours.contract.entity.DecorationCompany" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into decoration_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="companyAddress != null">
+                company_address,
+            </if>
+            <if test="companySynopsis != null">
+                company_synopsis,
+            </if>
+            <if test="companyIntime != null">
+                company_intime,
+            </if>
+            <if test="companyPhone != null">
+                company_phone,
+            </if>
+            <if test="companyRephone != null">
+                company_rephone,
+            </if>
+            <if test="companyIdcard != null">
+                company_idcard,
+            </if>
+            <if test="companyIdname != null">
+                company_idname,
+            </if>
+            <if test="companyStatus != null">
+                company_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddress != null">
+                #{companyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companySynopsis != null">
+                #{companySynopsis,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIntime != null">
+                #{companyIntime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyPhone != null">
+                #{companyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyRephone != null">
+                #{companyRephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIdcard != null">
+                #{companyIdcard,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIdname != null">
+                #{companyIdname,jdbcType=VARCHAR},
+            </if>
+            <if test="companyStatus != null">
+                #{companyStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.contract.entity.DecorationCompany">
+        <!--@mbg.generated-->
+        update decoration_company
+        <set>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddress != null">
+                company_address = #{companyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companySynopsis != null">
+                company_synopsis = #{companySynopsis,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIntime != null">
+                company_intime = #{companyIntime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyPhone != null">
+                company_phone = #{companyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyRephone != null">
+                company_rephone = #{companyRephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIdcard != null">
+                company_idcard = #{companyIdcard,jdbcType=VARCHAR},
+            </if>
+            <if test="companyIdname != null">
+                company_idname = #{companyIdname,jdbcType=VARCHAR},
+            </if>
+            <if test="companyStatus != null">
+                company_status = #{companyStatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.contract.entity.DecorationCompany">
+        <!--@mbg.generated-->
+        update decoration_company
+        set `password` = #{password,jdbcType=VARCHAR},
+        company_name = #{companyName,jdbcType=VARCHAR},
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+        company_synopsis = #{companySynopsis,jdbcType=VARCHAR},
+        company_intime = #{companyIntime,jdbcType=TIMESTAMP},
+        company_phone = #{companyPhone,jdbcType=VARCHAR},
+        company_rephone = #{companyRephone,jdbcType=VARCHAR},
+        company_idcard = #{companyIdcard,jdbcType=VARCHAR},
+        company_idname = #{companyIdname,jdbcType=VARCHAR},
+        company_status = #{companyStatus,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

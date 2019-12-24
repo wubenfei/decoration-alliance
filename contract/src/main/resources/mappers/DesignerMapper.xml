@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.contract.dao.DesignerMapper">
+    <resultMap id="BaseResultMap" type="com.ours.contract.entity.Designer">
+        <!--@mbg.generated-->
+        <!--@Table designer-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="designer_name" jdbcType="VARCHAR" property="designerName"/>
+        <result column="designer_phone" jdbcType="VARCHAR" property="designerPhone"/>
+        <result column="designer_email" jdbcType="VARCHAR" property="designerEmail"/>
+        <result column="designer_password" jdbcType="VARCHAR" property="designerPassword"/>
+        <result column="designer_status" jdbcType="VARCHAR" property="designerStatus"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, designer_name, designer_phone, designer_email, designer_password, designer_status,
+        url
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from designer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from designer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into designer (designer_name, designer_phone, designer_email,
+        designer_password, designer_status, url
+        )
+        values (#{designerName,jdbcType=VARCHAR}, #{designerPhone,jdbcType=VARCHAR}, #{designerEmail,jdbcType=VARCHAR},
+        #{designerPassword,jdbcType=VARCHAR}, #{designerStatus,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into designer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="designerName != null">
+                designer_name,
+            </if>
+            <if test="designerPhone != null">
+                designer_phone,
+            </if>
+            <if test="designerEmail != null">
+                designer_email,
+            </if>
+            <if test="designerPassword != null">
+                designer_password,
+            </if>
+            <if test="designerStatus != null">
+                designer_status,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="designerName != null">
+                #{designerName,jdbcType=VARCHAR},
+            </if>
+            <if test="designerPhone != null">
+                #{designerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="designerEmail != null">
+                #{designerEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="designerPassword != null">
+                #{designerPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="designerStatus != null">
+                #{designerStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.contract.entity.Designer">
+        <!--@mbg.generated-->
+        update designer
+        <set>
+            <if test="designerName != null">
+                designer_name = #{designerName,jdbcType=VARCHAR},
+            </if>
+            <if test="designerPhone != null">
+                designer_phone = #{designerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="designerEmail != null">
+                designer_email = #{designerEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="designerPassword != null">
+                designer_password = #{designerPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="designerStatus != null">
+                designer_status = #{designerStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.contract.entity.Designer">
+        <!--@mbg.generated-->
+        update designer
+        set designer_name = #{designerName,jdbcType=VARCHAR},
+        designer_phone = #{designerPhone,jdbcType=VARCHAR},
+        designer_email = #{designerEmail,jdbcType=VARCHAR},
+        designer_password = #{designerPassword,jdbcType=VARCHAR},
+        designer_status = #{designerStatus,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
