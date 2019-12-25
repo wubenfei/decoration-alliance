@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ours.contract.dao.StaffMapper">
-    <resultMap id="BaseResultMap" type="com.ours.contract.entity.Staff">
+<mapper namespace="com.ours.friendlyCompany.dao.StaffMapper">
+    <resultMap id="BaseResultMap" type="com.ours.friendlyCompany.entity.Staff">
         <!--@mbg.generated-->
         <!--@Table staff-->
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -37,7 +37,7 @@
         delete from staff
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Staff"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.friendlyCompany.entity.Staff"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into staff (url, job_number, wages,
@@ -51,7 +51,7 @@
         #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
         #{joinDate,jdbcType=DATE}, #{dismissionDate,jdbcType=DATE})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Staff"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.friendlyCompany.entity.Staff"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into staff
@@ -144,7 +144,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ours.contract.entity.Staff">
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.friendlyCompany.entity.Staff">
         <!--@mbg.generated-->
         update staff
         <set>
@@ -193,7 +193,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ours.contract.entity.Staff">
+    <update id="updateByPrimaryKey" parameterType="com.ours.friendlyCompany.entity.Staff">
         <!--@mbg.generated-->
         update staff
         set url = #{url,jdbcType=VARCHAR},
@@ -212,4 +212,15 @@
         dismission_date = #{dismissionDate,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}
     </update>
+    <select id="queryMaxDesigner_name" resultType="java.lang.String">
+      select MAX(job_number) from
+      (
+      select job_number FROM staff
+      UNION
+      select designer_job FROM designer
+      ) a
+    </select>
+    <select id="queryByIdcard" resultMap="BaseResultMap">
+        SELECT * from staff where id_card=#{id_card}
+    </select>
 </mapper>

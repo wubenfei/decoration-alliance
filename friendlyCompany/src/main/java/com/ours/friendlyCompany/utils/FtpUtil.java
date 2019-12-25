@@ -1,4 +1,4 @@
-package com.ours.contract.utils;
+package com.ours.friendlyCompany.utils;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;

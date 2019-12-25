@@ -1,4 +1,4 @@
-package com.ours.contract.entity;
+package com.ours.friendlyCompany.entity;
 
 import java.util.Date;
 
