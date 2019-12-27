@@ -1,5 +1,6 @@
 package com.ours.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -78,10 +79,12 @@ public class Staff {
     /**
      * 入职时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date joinDate;
 
     /**
      * 离职时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date dismissionDate;
 }
