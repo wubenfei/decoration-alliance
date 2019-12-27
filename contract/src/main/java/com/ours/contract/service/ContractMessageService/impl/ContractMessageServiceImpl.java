@@ -41,8 +41,8 @@ public class ContractMessageServiceImpl implements ContractMessageService {
     }
 
     @Override
-    public DecorationCompany getDecorationCompany(int decoration_company_id) {
-        return decorationCompanyMapper.selectByPrimaryKey(decoration_company_id);
+    public DecorationCompany getDecorationCompany(int id) {
+        return decorationCompanyMapper.selectByPrimaryKey(id);
     }
 
     @Override

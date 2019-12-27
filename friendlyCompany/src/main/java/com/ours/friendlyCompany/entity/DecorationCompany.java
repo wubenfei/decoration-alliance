@@ -58,6 +58,11 @@ public class DecorationCompany {
      */
     private String companyStatus;
 
+    /**
+     * 装修团队资质路径
+     */
+    private String companyUrl;
+
     public Integer getId() {
         return id;
     }
@@ -146,6 +151,14 @@ public class DecorationCompany {
         this.companyStatus = companyStatus;
     }
 
+    public String getCompanyUrl() {
+        return companyUrl;
+    }
+
+    public void setCompanyUrl(String companyUrl) {
+        this.companyUrl = companyUrl;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -163,6 +176,7 @@ public class DecorationCompany {
         sb.append(", companyIdcard=").append(companyIdcard);
         sb.append(", companyIdname=").append(companyIdname);
         sb.append(", companyStatus=").append(companyStatus);
+        sb.append(", companyUrl=").append(companyUrl);
         sb.append("]");
         return sb.toString();
     }

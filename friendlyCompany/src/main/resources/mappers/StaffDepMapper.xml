@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.friendlyCompany.dao.StaffDepMapper">
+    <resultMap id="BaseResultMap" type="com.ours.friendlyCompany.entity.StaffDep">
+        <!--@mbg.generated-->
+        <!--@Table staff_dep-->
+        <result column="job_number" jdbcType="VARCHAR" property="jobNumber"/>
+        <result column="dep_id" jdbcType="VARCHAR" property="depId"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.ours.friendlyCompany.entity.StaffDep">
+        <!--@mbg.generated-->
+        insert into staff_dep (job_number, dep_id)
+        values (#{jobNumber,jdbcType=VARCHAR}, #{depId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ours.friendlyCompany.entity.StaffDep">
+        <!--@mbg.generated-->
+        insert into staff_dep
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jobNumber != null">
+                job_number,
+            </if>
+            <if test="depId != null">
+                dep_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="jobNumber != null">
+                #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="depId != null">
+                #{depId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
