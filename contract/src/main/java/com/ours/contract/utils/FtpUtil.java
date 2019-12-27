@@ -142,14 +142,5 @@ public class FtpUtil {
         }
         return result;
     }
-	
-	/*public static void main(String[] args) {
-		try {  
-	        FileInputStream in=new FileInputStream(new File("E:\\download\\image\\pic.jpg"));  
-	        boolean flag = uploadFile("192.168.50.129", 21, "ftpuser", "ftpuser", "/home/ftpuser/images","/2018/05/28", "uppic.jpg", in);  
-	        System.out.println(flag);  
-	    } catch (FileNotFoundException e) {  
-	        e.printStackTrace();  
-	    }  
-	}*/
+
 }

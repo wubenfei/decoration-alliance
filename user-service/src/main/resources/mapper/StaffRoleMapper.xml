@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userservice.mapper.StaffRoleMapper">
+    <resultMap id="BaseResultMap" type="com.ours.entity.StaffRole">
+        <!--@mbg.generated-->
+        <!--@Table staff_role-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="staff_role_name" jdbcType="VARCHAR" property="staffRoleName"/>
+        <result column="staff_role_value" jdbcType="VARCHAR" property="staffRoleValue"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, staff_role_name, staff_role_value
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from staff_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from staff_role
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.StaffRole"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into staff_role (staff_role_name, staff_role_value)
+        values (#{staffRoleName,jdbcType=VARCHAR}, #{staffRoleValue,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.StaffRole"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into staff_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="staffRoleName != null">
+                staff_role_name,
+            </if>
+            <if test="staffRoleValue != null">
+                staff_role_value,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="staffRoleName != null">
+                #{staffRoleName,jdbcType=VARCHAR},
+            </if>
+            <if test="staffRoleValue != null">
+                #{staffRoleValue,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.StaffRole">
+        <!--@mbg.generated-->
+        update staff_role
+        <set>
+            <if test="staffRoleName != null">
+                staff_role_name = #{staffRoleName,jdbcType=VARCHAR},
+            </if>
+            <if test="staffRoleValue != null">
+                staff_role_value = #{staffRoleValue,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.entity.StaffRole">
+        <!--@mbg.generated-->
+        update staff_role
+        set staff_role_name = #{staffRoleName,jdbcType=VARCHAR},
+        staff_role_value = #{staffRoleValue,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getRoleName" resultMap="BaseResultMap">
+      select * from staff_role
+    </select>
+</mapper>
