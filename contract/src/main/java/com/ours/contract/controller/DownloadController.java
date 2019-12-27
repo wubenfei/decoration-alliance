@@ -26,9 +26,21 @@ public class DownloadController {
     @Value("${IMAGE.BASE.URL}")
     private String baseUrl;
     //测试下载
-    /*@GetMapping("/testdown")
+    /**
+     * Description: 从FTP服务器下载文件
+     *
+     * @param host       FTP服务器ip
+     * @param port       FTP服务器端口
+     * @param username   FTP登录账号
+     * @param password   FTP登录密码
+     * @param remotePath FTP服务器上的相对路径
+     * @param fileName   要下载的文件名
+     * @param localPath  下载后保存到本地的路径
+     * @return
+     */
+   /* @GetMapping("/testdown")
     public boolean testdown(){
-        FtpUtil.downloadFile()
+        return FtpUtil.downloadFile(host,port,userName,passWord,basePath,);
     }*/
 
 

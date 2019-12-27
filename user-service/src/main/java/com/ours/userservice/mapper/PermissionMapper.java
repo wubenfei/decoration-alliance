@@ -17,5 +17,5 @@ public interface PermissionMapper {
 
     int updateByPrimaryKey(Permission record);
 
-    List<Permission> selectStaffAllPermission(Integer id);
+    List<Permission> selectStaffAllPermission(String jobNumber);
 }

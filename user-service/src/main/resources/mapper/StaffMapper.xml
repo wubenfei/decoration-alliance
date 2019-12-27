@@ -212,7 +212,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <select id="selectPhoneAndPassword" parameterType="string" resultMap="BaseResultMap">
-        select * from staff where phone=#{phone} and password=#{password}
+        select * from staff where phone=#{username} and password=#{password}
     </select>
     <select id="selectAllStaff" resultMap="BaseResultMap">
       select * from staff

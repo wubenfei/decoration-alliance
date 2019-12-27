@@ -51,9 +51,10 @@ public class UserController {
             //将员工对象添加进session中  staff
             session.setAttribute("staff", staff);
             //获取员工id
-            Integer id = staff.getId();
+//            Integer id = staff.getId();
+            String jobNumber = staff.getJobNumber();
             //根据员工id查询出该员工的所有权限信息
-            List<Permission> permissionList = permissionMapper.selectStaffAllPermission(id);
+            List<Permission> permissionList = permissionMapper.selectStaffAllPermission(jobNumber);
             //将登陆成功的员工权限添加进session中保存
             session.setAttribute("permission", permissionList);
             System.out.println(permissionList);
@@ -267,7 +268,6 @@ public class UserController {
             return staffFrom;
         }
     }
-
     private StaffFrom getStaffFrom(String jobNumber, SimpleDateFormat sdf, Designer designer, Date joinDate, Date dismissionDate) {
         Department department = departmentMapper.selectStaffDepartmentByDepId(jobNumber);
         String joinFormat = sdf.format(joinDate);
