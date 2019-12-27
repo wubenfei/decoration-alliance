@@ -17,7 +17,6 @@ public interface ContractMapper {
     int updateByPrimaryKeySelective(Contract record);
 
     int updateByPrimaryKey(Contract record);
-
     List<Map<String, Object>> queryContractMessage(int from, int pageSize);
 
     Integer queryContractMessageAll();

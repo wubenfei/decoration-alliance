@@ -4,6 +4,9 @@ import com.ours.contract.entity.*;
 import com.ours.contract.service.ContractMessageService.ContractMessageService;
 import com.ours.contract.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,22 +15,37 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @RestController
+@CrossOrigin
 public class ContractMessageController {
     @Autowired
     private ContractMessageService cms;
 
-    //获取进行中|异常的合同
+    /**
+     * 获取进行中|异常的合同,用于展示
+     * 有redis缓存
+     *
+     * @param response
+     * @param currentPage1 当前页码
+     * @param pageSize     每页条数
+     * @return
+     */
+    @Cacheable(cacheNames = "getContractMessage", key = "#currentPage1")
     @GetMapping("/getContractMessage")
     public Datalist getControllerMessage(HttpServletResponse response, int currentPage1, int pageSize) {
+        System.out.println("当前页码+++++++++++:" + currentPage1);
+        //返回参数
+        Datalist datalist = new Datalist();
         int from = (currentPage1 - 1) * pageSize;
         //获取总条数
         int contractMessageCount = cms.queryContractMessageAll();
-        //查询当日合同
+        //查询进行中|异常的合同
         List<Map<String, Object>> contractMessage = cms.queryContractMessage(from, pageSize);
+        System.out.println("获取进行中|异常的合同:" + contractMessage.size());
+        if (contractMessage.size() == 0) {
+            return datalist;
+        }
         //处理时间数据
         forTimeAndName(contractMessage);
-        //返回参数
-        Datalist datalist = new Datalist();
         //头
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control", "no-cache");
@@ -37,6 +55,10 @@ public class ContractMessageController {
         return datalist;
     }
 
+    /**
+     * 处理时间等数据
+     * @param contractMessage 传入合同数据
+     */
     private void forTimeAndName(List<Map<String, Object>> contractMessage) {
         if (contractMessage.size() != 0) {
             for (int i = 0; i < contractMessage.size(); i++) {
@@ -62,9 +84,11 @@ public class ContractMessageController {
                 if (((String) map.get("contract_type")).equals("设计合同")) {
                     //获取乙方设计师id
                     int designer_id = (int) map.get("designer_id");
+                    System.out.println("设计师id:" + designer_id);
                     //获取设计师乙方姓名
                     Designer designer = cms.getDesignername(designer_id);
-                    map.put("other_name", user.getUsername());
+                    System.out.println(designer.toString());
+                    map.put("other_name", designer.getDesignerName());
                     map.put("other_idcard", (String) map.get("designer_idcard"));
                     map.put("other_phone", (String) map.get("designer_phone"));
                 } else {
@@ -80,7 +104,16 @@ public class ContractMessageController {
         }
     }
 
-    //状态更改
+    /**
+     * 状态更改
+     * 清除所有redis中合同相关缓存
+     *
+     * @param response
+     * @param ids             合同表主键
+     * @param contract_status 状态
+     * @return
+     */
+    @CacheEvict(cacheNames = {"getContractMessage", "getContractMessageById"}, allEntries = true)
     @PutMapping("/changeContractStatus")
     public Map<String, Object> changeContracStatus(HttpServletResponse response, int ids, String contract_status) {
         //头
@@ -105,6 +138,15 @@ public class ContractMessageController {
         }
     }
 
+    /**
+     * 按合同编号搜索
+     * 有redis缓存
+     *
+     * @param response
+     * @param num      合同编号
+     * @return
+     */
+    @Cacheable(cacheNames = "getContractMessageById",key = "#num")
     @GetMapping("/getContractMessageById")
     public Datalist getControllerMessageById(HttpServletResponse response, String num) {
         List<Map<String, Object>> listT = cms.queryContractTimeById(num);
@@ -133,6 +175,17 @@ public class ContractMessageController {
         return datalist;
     }
 
+    /**
+     * 按多条件搜索合同
+     *
+     * @param response
+     * @param checkboxGroup 选择的条件
+     * @param text          输入的搜索数据
+     * @param currentPage1  当前页码
+     * @param pageSize      每页条数
+     * @return
+     */
+    @CacheEvict(cacheNames="getContractMessage",allEntries = true)
     @GetMapping("/getContractMessageByKinds")
     public Datalist getContractMessageByKinds(HttpServletResponse response,
                                               String[] checkboxGroup,
@@ -169,12 +222,20 @@ public class ContractMessageController {
             builder.append("select * from contract where ");
             builder1.append("select count(*) from contract where ");
             for (int i = 0; i < clength - 1; i++) {
+                if (strings[i].trim() == "") {
+                    //空数据
+                    return geWarntDatalist1(datalist);
+                }
                 builder.append(checkboxGroup[i] + "=");
                 builder1.append(checkboxGroup[i] + "=");
                 builder.append("\"" + strings[i] + "\" ");
                 builder1.append("\"" + strings[i] + "\" ");
                 builder.append("and ");
                 builder1.append("and ");
+            }
+            if (strings[clength - 1].trim() == "") {
+                //空数据
+                return geWarntDatalist1(datalist);
             }
             builder.append(checkboxGroup[clength - 1] + "=");
             builder.append("\"" + strings[clength - 1] + "\" ");
@@ -189,6 +250,7 @@ public class ContractMessageController {
             forTimeAndName(listT);
             datalist.setForlist(listT);
             datalist.setPageTotal(i);
+            System.out.println("多条件搜索成功");
             return datalist;
 
         } else if (clength != slength) {
@@ -219,7 +281,18 @@ public class ContractMessageController {
     //搜索字段和数据不匹配时候的处理
     private Datalist geWarntDatalist(Datalist datalist) {
         Map<String, Object> map = new HashMap<>();
-        map.put("warnings", "搜索字段量与数据量不匹配!");
+        map.put("warnings", "搜索字段量与数据量不匹配 !");
+        List list = new ArrayList();
+        list.add(map);
+        datalist.setForlist(list);
+        datalist.setPageTotal(0);
+        return datalist;
+    }
+
+    //搜索数据为空的处理
+    private Datalist geWarntDatalist1(Datalist datalist) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("warnings", "请勿在选择搜索条件后输入空数据 !");
         List list = new ArrayList();
         list.add(map);
         datalist.setForlist(list);

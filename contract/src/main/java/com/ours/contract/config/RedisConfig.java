@@ -1,9 +1,8 @@
-package com.ours.friendlyCompany.config;
+package com.ours.contract.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
@@ -12,7 +11,6 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Collections.singletonMap;
@@ -26,7 +24,7 @@ public class RedisConfig {
                 fromSerializer(new GenericJackson2JsonRedisSerializer())).entryTtl(Duration
                 .ofMinutes(30)).disableCachingNullValues();
         //配置student_page_的超时时间为10s
-        Map<String, RedisCacheConfiguration> map = singletonMap("getFriendly", RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.
+        Map<String, RedisCacheConfiguration> map = singletonMap("getContractMessage", RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.
                 fromSerializer(new GenericJackson2JsonRedisSerializer())).entryTtl(Duration.ofMinutes(10L))
                 .disableCachingNullValues());
 

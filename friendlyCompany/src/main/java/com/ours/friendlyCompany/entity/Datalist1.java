@@ -5,7 +5,6 @@ import java.util.List;
 public class Datalist1 {
     private List forlist;
     private List forlist1;
-    private int pageTotal;
 
     public List getForlist1() {
         return forlist1;
@@ -23,11 +22,4 @@ public class Datalist1 {
         this.forlist = forlist;
     }
 
-    public int getPageTotal() {
-        return pageTotal;
-    }
-
-    public void setPageTotal(int pageTotal) {
-        this.pageTotal = pageTotal;
-    }
 }

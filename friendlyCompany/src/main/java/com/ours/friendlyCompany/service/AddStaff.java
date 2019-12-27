@@ -1,6 +1,8 @@
 package com.ours.friendlyCompany.service;
 
+import com.ours.friendlyCompany.entity.Designer;
 import com.ours.friendlyCompany.entity.Staff;
+import com.ours.friendlyCompany.entity.StaffDep;
 
 import java.util.List;
 import java.util.Map;
@@ -15,4 +17,10 @@ public interface AddStaff {
     int insertStaff(Staff staff);
 
     Staff queryByIdcard(String id_card);
+
+    int insertStaffDep(StaffDep staffDep);
+
+    Designer queryDesignerByIdcard(String id_card);
+
+    int insertDesigner(Designer designer);
 }

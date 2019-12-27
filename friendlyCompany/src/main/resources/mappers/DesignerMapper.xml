@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ours.contract.dao.DesignerMapper">
-    <resultMap id="BaseResultMap" type="com.ours.contract.entity.Designer">
+<mapper namespace="com.ours.friendlyCompany.dao.DesignerMapper">
+    <resultMap id="BaseResultMap" type="com.ours.friendlyCompany.entity.Designer">
         <!--@mbg.generated-->
         <!--@Table designer-->
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -38,7 +38,7 @@
         delete from designer
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.friendlyCompany.entity.Designer"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into designer (url, designer_job, wages,
@@ -54,8 +54,8 @@
         #{idCard,jdbcType=VARCHAR}, #{joinData,jdbcType=DATE}, #{dismissionDate,jdbcType=DATE}
         )
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
-            useGeneratedKeys="true">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.ours.friendlyCompany.entity.Designer" useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into designer
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -153,7 +153,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ours.contract.entity.Designer">
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.friendlyCompany.entity.Designer">
         <!--@mbg.generated-->
         update designer
         <set>
@@ -205,7 +205,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ours.contract.entity.Designer">
+    <update id="updateByPrimaryKey" parameterType="com.ours.friendlyCompany.entity.Designer">
         <!--@mbg.generated-->
         update designer
         set url = #{url,jdbcType=VARCHAR},
@@ -225,4 +225,7 @@
         dismission_date = #{dismissionDate,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}
     </update>
+    <select id="queryDesignerByIdcard" resultMap="BaseResultMap">
+        select * from stagethree.designer where id_card=#{id_card}
+    </select>
 </mapper>

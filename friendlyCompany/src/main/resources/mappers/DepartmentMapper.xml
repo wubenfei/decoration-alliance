@@ -72,10 +72,11 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <select id="getAllDepartments" resultType="java.util.Map">
-      select dep_name from department
+      select dep_id,dep_name from department
     </select>
     <select id="queryAllLevel" resultType="java.util.Map">
     select staff_role_value from
     staff_role
   </select>
+
 </mapper>

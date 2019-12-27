@@ -8,6 +8,7 @@ import com.ours.friendlyCompany.utils.IDUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,21 +43,32 @@ public class FriendlyCompanyController {
     //规定文件格式
     private List<String> sList = Arrays.asList("doc", "docx", "pdf");
 
-    //@Cacheable(cacheNames="getFriendlyCompanyKind")
+    /**
+     * 得到所有的入驻类型:只有装修团队
+     *
+     * @param response
+     * @return
+     */
     @GetMapping("/getFriendlyCompanyKind")
     public List<Map<String, Object>> getFriendlyCompanyKind(HttpServletResponse response) {
-
-        //头
-        //头
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "*");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
-        response.setHeader("Access-Control-Expose-Headers", "*");
         return fcm.queryAllValue();
     }
 
-    //创建新的装修团队
+    /**
+     * 创建新的装修团队
+     * @param friendly_company_kind 装修团队
+     * @param company_name 团队名
+     * @param company_address 团队地址
+     * @param company_phone 团队电话
+     * @param company_rephone 团队备用电话
+     * @param company_idcard 团队责任人身份证
+     * @param company_idname 团队责任人姓名
+     * @param intime 入驻时间
+     * @param upload 上传的文件
+     * @param uploadName 上传文件的名字:用于取后缀
+     * @return 语句
+     * @throws IOException 抛异常
+     */
     @RequestMapping("/creatDecorationCompanyAndUpload")
     public String creatDecorationCompany(String friendly_company_kind,
                                          String company_name,
@@ -111,11 +123,5 @@ public class FriendlyCompanyController {
         } else {
             return "请选择入驻团队类型!";
         }
-    }
-
-    //资质文档上传
-    // @RequestMapping("/upload")
-    public String upload() {
-        return "1";
     }
 }
