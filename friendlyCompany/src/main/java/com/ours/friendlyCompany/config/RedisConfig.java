@@ -26,7 +26,7 @@ public class RedisConfig {
                 fromSerializer(new GenericJackson2JsonRedisSerializer())).entryTtl(Duration
                 .ofMinutes(30)).disableCachingNullValues();
         //配置student_page_的超时时间为10s
-        Map<String, RedisCacheConfiguration> map = singletonMap("getFriendlyCompanyKind", RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.
+        Map<String, RedisCacheConfiguration> map = singletonMap("getFriendly", RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.
                 fromSerializer(new GenericJackson2JsonRedisSerializer())).entryTtl(Duration.ofMinutes(10L))
                 .disableCachingNullValues());
 

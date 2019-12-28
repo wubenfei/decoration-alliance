@@ -1,15 +1,17 @@
 package com.ours.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Staff {
+public class Staff implements Serializable {
     /**
      * 主键
      */
@@ -78,10 +80,12 @@ public class Staff {
     /**
      * 入职时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date joinDate;
 
     /**
      * 离职时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date dismissionDate;
 }

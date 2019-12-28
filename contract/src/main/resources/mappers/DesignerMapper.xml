@@ -5,17 +5,26 @@
         <!--@mbg.generated-->
         <!--@Table designer-->
         <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="designer_job" jdbcType="VARCHAR" property="designerJob"/>
+        <result column="wages" jdbcType="VARCHAR" property="wages"/>
         <result column="designer_name" jdbcType="VARCHAR" property="designerName"/>
         <result column="designer_phone" jdbcType="VARCHAR" property="designerPhone"/>
         <result column="designer_email" jdbcType="VARCHAR" property="designerEmail"/>
         <result column="designer_password" jdbcType="VARCHAR" property="designerPassword"/>
         <result column="designer_status" jdbcType="VARCHAR" property="designerStatus"/>
-        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="join_data" jdbcType="DATE" property="joinData"/>
+        <result column="dismission_date" jdbcType="DATE" property="dismissionDate"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, designer_name, designer_phone, designer_email, designer_password, designer_status,
-        url
+        id, url, designer_job, wages, designer_name, designer_phone, designer_email, designer_password,
+        designer_status, role_id, role_name, tel, addr, id_card, join_data, dismission_date
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -32,11 +41,17 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into designer (designer_name, designer_phone, designer_email,
-        designer_password, designer_status, url
+        insert into designer (url, designer_job, wages,
+        designer_name, designer_phone, designer_email,
+        designer_password, designer_status, role_id,
+        role_name, tel, addr,
+        id_card, join_data, dismission_date
         )
-        values (#{designerName,jdbcType=VARCHAR}, #{designerPhone,jdbcType=VARCHAR}, #{designerEmail,jdbcType=VARCHAR},
-        #{designerPassword,jdbcType=VARCHAR}, #{designerStatus,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+        values (#{url,jdbcType=VARCHAR}, #{designerJob,jdbcType=VARCHAR}, #{wages,jdbcType=VARCHAR},
+        #{designerName,jdbcType=VARCHAR}, #{designerPhone,jdbcType=VARCHAR}, #{designerEmail,jdbcType=VARCHAR},
+        #{designerPassword,jdbcType=VARCHAR}, #{designerStatus,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER},
+        #{roleName,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR},
+        #{idCard,jdbcType=VARCHAR}, #{joinData,jdbcType=DATE}, #{dismissionDate,jdbcType=DATE}
         )
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Designer"
@@ -44,6 +59,15 @@
         <!--@mbg.generated-->
         insert into designer
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="url != null">
+                url,
+            </if>
+            <if test="designerJob != null">
+                designer_job,
+            </if>
+            <if test="wages != null">
+                wages,
+            </if>
             <if test="designerName != null">
                 designer_name,
             </if>
@@ -59,11 +83,38 @@
             <if test="designerStatus != null">
                 designer_status,
             </if>
-            <if test="url != null">
-                url,
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="addr != null">
+                addr,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="joinData != null">
+                join_data,
+            </if>
+            <if test="dismissionDate != null">
+                dismission_date,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="designerJob != null">
+                #{designerJob,jdbcType=VARCHAR},
+            </if>
+            <if test="wages != null">
+                #{wages,jdbcType=VARCHAR},
+            </if>
             <if test="designerName != null">
                 #{designerName,jdbcType=VARCHAR},
             </if>
@@ -79,8 +130,26 @@
             <if test="designerStatus != null">
                 #{designerStatus,jdbcType=VARCHAR},
             </if>
-            <if test="url != null">
-                #{url,jdbcType=VARCHAR},
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="joinData != null">
+                #{joinData,jdbcType=DATE},
+            </if>
+            <if test="dismissionDate != null">
+                #{dismissionDate,jdbcType=DATE},
             </if>
         </trim>
     </insert>
@@ -88,6 +157,15 @@
         <!--@mbg.generated-->
         update designer
         <set>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="designerJob != null">
+                designer_job = #{designerJob,jdbcType=VARCHAR},
+            </if>
+            <if test="wages != null">
+                wages = #{wages,jdbcType=VARCHAR},
+            </if>
             <if test="designerName != null">
                 designer_name = #{designerName,jdbcType=VARCHAR},
             </if>
@@ -103,8 +181,26 @@
             <if test="designerStatus != null">
                 designer_status = #{designerStatus,jdbcType=VARCHAR},
             </if>
-            <if test="url != null">
-                url = #{url,jdbcType=VARCHAR},
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                addr = #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="joinData != null">
+                join_data = #{joinData,jdbcType=DATE},
+            </if>
+            <if test="dismissionDate != null">
+                dismission_date = #{dismissionDate,jdbcType=DATE},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -112,12 +208,21 @@
     <update id="updateByPrimaryKey" parameterType="com.ours.contract.entity.Designer">
         <!--@mbg.generated-->
         update designer
-        set designer_name = #{designerName,jdbcType=VARCHAR},
+        set url = #{url,jdbcType=VARCHAR},
+        designer_job = #{designerJob,jdbcType=VARCHAR},
+        wages = #{wages,jdbcType=VARCHAR},
+        designer_name = #{designerName,jdbcType=VARCHAR},
         designer_phone = #{designerPhone,jdbcType=VARCHAR},
         designer_email = #{designerEmail,jdbcType=VARCHAR},
         designer_password = #{designerPassword,jdbcType=VARCHAR},
         designer_status = #{designerStatus,jdbcType=VARCHAR},
-        url = #{url,jdbcType=VARCHAR}
+        role_id = #{roleId,jdbcType=INTEGER},
+        role_name = #{roleName,jdbcType=VARCHAR},
+        tel = #{tel,jdbcType=VARCHAR},
+        addr = #{addr,jdbcType=VARCHAR},
+        id_card = #{idCard,jdbcType=VARCHAR},
+        join_data = #{joinData,jdbcType=DATE},
+        dismission_date = #{dismissionDate,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

@@ -15,11 +15,12 @@
         <result column="company_idcard" jdbcType="VARCHAR" property="companyIdcard"/>
         <result column="company_idname" jdbcType="VARCHAR" property="companyIdname"/>
         <result column="company_status" jdbcType="VARCHAR" property="companyStatus"/>
+        <result column="company_url" jdbcType="VARCHAR" property="companyUrl"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, `password`, company_name, company_address, company_synopsis, company_intime,
-        company_phone, company_rephone, company_idcard, company_idname, company_status
+        company_phone, company_rephone, company_idcard, company_idname, company_status, company_url
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -39,11 +40,11 @@
         insert into decoration_company (`password`, company_name, company_address,
         company_synopsis, company_intime, company_phone,
         company_rephone, company_idcard, company_idname,
-        company_status)
+        company_status, company_url)
         values (#{password,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR},
         #{companySynopsis,jdbcType=VARCHAR}, #{companyIntime,jdbcType=TIMESTAMP}, #{companyPhone,jdbcType=VARCHAR},
         #{companyRephone,jdbcType=VARCHAR}, #{companyIdcard,jdbcType=VARCHAR}, #{companyIdname,jdbcType=VARCHAR},
-        #{companyStatus,jdbcType=VARCHAR})
+        #{companyStatus,jdbcType=VARCHAR}, #{companyUrl,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
             parameterType="com.ours.contract.entity.DecorationCompany" useGeneratedKeys="true">
@@ -80,6 +81,9 @@
             <if test="companyStatus != null">
                 company_status,
             </if>
+            <if test="companyUrl != null">
+                company_url,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="password != null">
@@ -111,6 +115,9 @@
             </if>
             <if test="companyStatus != null">
                 #{companyStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="companyUrl != null">
+                #{companyUrl,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -148,6 +155,9 @@
             <if test="companyStatus != null">
                 company_status = #{companyStatus,jdbcType=VARCHAR},
             </if>
+            <if test="companyUrl != null">
+                company_url = #{companyUrl,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -163,7 +173,8 @@
         company_rephone = #{companyRephone,jdbcType=VARCHAR},
         company_idcard = #{companyIdcard,jdbcType=VARCHAR},
         company_idname = #{companyIdname,jdbcType=VARCHAR},
-        company_status = #{companyStatus,jdbcType=VARCHAR}
+        company_status = #{companyStatus,jdbcType=VARCHAR},
+        company_url = #{companyUrl,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

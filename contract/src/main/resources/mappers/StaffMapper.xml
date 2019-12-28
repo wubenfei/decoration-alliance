@@ -6,16 +6,24 @@
         <!--@Table staff-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="job_number" jdbcType="VARCHAR" property="jobNumber"/>
         <result column="wages" jdbcType="VARCHAR" property="wages"/>
         <result column="staff_name" jdbcType="VARCHAR" property="staffName"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="join_date" jdbcType="DATE" property="joinDate"/>
+        <result column="dismission_date" jdbcType="DATE" property="dismissionDate"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, url, wages, staff_name, phone, `password`, `status`, role_id
+        id, url, job_number, wages, staff_name, phone, `password`, `status`, role_id, role_name,
+        tel, addr, id_card, join_date, dismission_date
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -29,24 +37,30 @@
         delete from staff
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.ours.contract.entity.Staff">
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Staff"
+            useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into staff (id, url, wages,
+        insert into staff (url, job_number, wages,
         staff_name, phone, `password`,
-        `status`, role_id)
-        values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{wages,jdbcType=VARCHAR},
+        `status`, role_id, role_name,
+        tel, addr, id_card,
+        join_date, dismission_date)
+        values (#{url,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, #{wages,jdbcType=VARCHAR},
         #{staffName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{status,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
+        #{status,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR},
+        #{tel,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
+        #{joinDate,jdbcType=DATE}, #{dismissionDate,jdbcType=DATE})
     </insert>
-    <insert id="insertSelective" parameterType="com.ours.contract.entity.Staff">
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.contract.entity.Staff"
+            useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into staff
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="url != null">
                 url,
+            </if>
+            <if test="jobNumber != null">
+                job_number,
             </if>
             <if test="wages != null">
                 wages,
@@ -66,13 +80,31 @@
             <if test="roleId != null">
                 role_id,
             </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="addr != null">
+                addr,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="joinDate != null">
+                join_date,
+            </if>
+            <if test="dismissionDate != null">
+                dismission_date,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
             <if test="url != null">
                 #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null">
+                #{jobNumber,jdbcType=VARCHAR},
             </if>
             <if test="wages != null">
                 #{wages,jdbcType=VARCHAR},
@@ -92,6 +124,24 @@
             <if test="roleId != null">
                 #{roleId,jdbcType=INTEGER},
             </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="joinDate != null">
+                #{joinDate,jdbcType=DATE},
+            </if>
+            <if test="dismissionDate != null">
+                #{dismissionDate,jdbcType=DATE},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.ours.contract.entity.Staff">
@@ -100,6 +150,9 @@
         <set>
             <if test="url != null">
                 url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null">
+                job_number = #{jobNumber,jdbcType=VARCHAR},
             </if>
             <if test="wages != null">
                 wages = #{wages,jdbcType=VARCHAR},
@@ -119,6 +172,24 @@
             <if test="roleId != null">
                 role_id = #{roleId,jdbcType=INTEGER},
             </if>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                addr = #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="joinDate != null">
+                join_date = #{joinDate,jdbcType=DATE},
+            </if>
+            <if test="dismissionDate != null">
+                dismission_date = #{dismissionDate,jdbcType=DATE},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -126,12 +197,19 @@
         <!--@mbg.generated-->
         update staff
         set url = #{url,jdbcType=VARCHAR},
+        job_number = #{jobNumber,jdbcType=VARCHAR},
         wages = #{wages,jdbcType=VARCHAR},
         staff_name = #{staffName,jdbcType=VARCHAR},
         phone = #{phone,jdbcType=VARCHAR},
         `password` = #{password,jdbcType=VARCHAR},
         `status` = #{status,jdbcType=VARCHAR},
-        role_id = #{roleId,jdbcType=INTEGER}
+        role_id = #{roleId,jdbcType=INTEGER},
+        role_name = #{roleName,jdbcType=VARCHAR},
+        tel = #{tel,jdbcType=VARCHAR},
+        addr = #{addr,jdbcType=VARCHAR},
+        id_card = #{idCard,jdbcType=VARCHAR},
+        join_date = #{joinDate,jdbcType=DATE},
+        dismission_date = #{dismissionDate,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

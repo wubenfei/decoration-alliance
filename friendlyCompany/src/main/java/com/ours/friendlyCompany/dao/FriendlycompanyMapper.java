@@ -21,11 +21,4 @@ public interface FriendlycompanyMapper {
 
     List<Map<String, Object>> queryAllValue();
 
-    int insertBySome(String company_name,
-                     String company_address,
-                     String company_phone,
-                     String company_rephone,
-                     String company_idcard,
-                     String company_idname,
-                     Date intime);
 }

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.our.business.mapper.BusinessApplyMapper">
+  <resultMap id="BaseResultMap" type="com.ours.entity.BusinessApply">
+    <!--@mbg.generated-->
+    <!--@Table business_apply-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="apply_title" jdbcType="VARCHAR" property="applyTitle" />
+    <result column="apply_type" jdbcType="VARCHAR" property="applyType" />
+    <result column="apply_number" jdbcType="VARCHAR" property="applyNumber" />
+    <result column="fund_demand" jdbcType="FLOAT" property="fundDemand" />
+    <result column="submit_date" jdbcType="DATE" property="submitDate" />
+    <result column="verify_date" jdbcType="DATE" property="verifyDate" />
+    <result column="apply_content" jdbcType="VARCHAR" property="applyContent" />
+    <result column="apply_status" jdbcType="VARCHAR" property="applyStatus" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, apply_title, apply_type, apply_number, fund_demand, submit_date, verify_date, 
+    apply_content, apply_status, file_url, file_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from business_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from business_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.BusinessApply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into business_apply (apply_title, apply_type, apply_number, 
+      fund_demand, submit_date, verify_date, 
+      apply_content, apply_status, file_url,file_name
+      )
+    values (#{applyTitle,jdbcType=VARCHAR}, #{applyType,jdbcType=VARCHAR}, #{applyNumber,jdbcType=VARCHAR}, 
+      #{fundDemand,jdbcType=FLOAT}, #{submitDate,jdbcType=DATE}, #{verifyDate,jdbcType=DATE}, 
+      #{applyContent,jdbcType=VARCHAR}, #{applyStatus,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR},#{fileName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.BusinessApply" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into business_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyTitle != null">
+        apply_title,
+      </if>
+      <if test="applyType != null">
+        apply_type,
+      </if>
+      <if test="applyNumber != null">
+        apply_number,
+      </if>
+      <if test="fundDemand != null">
+        fund_demand,
+      </if>
+      <if test="submitDate != null">
+        submit_date,
+      </if>
+      <if test="verifyDate != null">
+        verify_date,
+      </if>
+      <if test="applyContent != null">
+        apply_content,
+      </if>
+      <if test="applyStatus != null">
+        apply_status,
+      </if>
+      <if test="fileUrl != null">
+        file_url,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyTitle != null">
+        #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNumber != null">
+        #{applyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fundDemand != null">
+        #{fundDemand,jdbcType=FLOAT},
+      </if>
+      <if test="submitDate != null">
+        #{submitDate,jdbcType=DATE},
+      </if>
+      <if test="verifyDate != null">
+        #{verifyDate,jdbcType=DATE},
+      </if>
+      <if test="applyContent != null">
+        #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.BusinessApply">
+    <!--@mbg.generated-->
+    update business_apply
+    <set>
+      <if test="applyTitle != null">
+        apply_title = #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        apply_type = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNumber != null">
+        apply_number = #{applyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fundDemand != null">
+        fund_demand = #{fundDemand,jdbcType=FLOAT},
+      </if>
+      <if test="submitDate != null">
+        submit_date = #{submitDate,jdbcType=DATE},
+      </if>
+      <if test="verifyDate != null">
+        verify_date = #{verifyDate,jdbcType=DATE},
+      </if>
+      <if test="applyContent != null">
+        apply_content = #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        apply_status = #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_url = #{fileName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ours.entity.BusinessApply">
+    <!--@mbg.generated-->
+    update business_apply
+    set apply_title = #{applyTitle,jdbcType=VARCHAR},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      apply_number = #{applyNumber,jdbcType=VARCHAR},
+      fund_demand = #{fundDemand,jdbcType=FLOAT},
+      submit_date = #{submitDate,jdbcType=DATE},
+      verify_date = #{verifyDate,jdbcType=DATE},
+      apply_content = #{applyContent,jdbcType=VARCHAR},
+      apply_status = #{applyStatus,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+<!--  自定义方法-->
+    <select id="selectAll" resultMap="BaseResultMap">
+      select * from business_apply where apply_status = '未读'
+    </select>
+  <update id="updateByApplyNumber">
+    update business_apply set apply_status = #{applyStatus,jdbcType=VARCHAR} where apply_number = #{applyNumber,jdbcType=VARCHAR}
+  </update>
+    <select id="getByApplyNumber" resultMap="BaseResultMap">
+      select * from business_apply where apply_number = #{applyNumber,jdbcType=VARCHAR}
+    </select>
+</mapper>

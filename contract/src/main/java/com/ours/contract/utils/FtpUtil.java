@@ -36,6 +36,7 @@ public class FtpUtil {
             ftp.connect(host, port);// 连接FTP服务器
             // 如果采用默认端口，可以使用ftp.connect(host)的方式直接连接FTP服务器
             ftp.login(username, password);// 登录
+            System.out.println("ftp" + username + "登录成功");
             reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftp.disconnect();
@@ -43,14 +44,19 @@ public class FtpUtil {
             }
             //切换到上传目录
             if (!ftp.changeWorkingDirectory(basePath + filePath)) {
+                System.out.println("目录:" + filePath);
+                System.out.println("基础目录:" + basePath);
                 //如果目录不存在创建目录
                 String[] dirs = filePath.split("/");
                 String tempPath = basePath;
                 for (String dir : dirs) {
                     if (null == dir || "".equals(dir)) continue;
                     tempPath += "/" + dir;
+                    System.out.println("tempPath:" + tempPath);
+
                     if (!ftp.changeWorkingDirectory(tempPath)) {
                         if (!ftp.makeDirectory(tempPath)) {
+                            System.out.println("!ftp.makeDirectory(tempPath)");
                             return result;
                         } else {
                             ftp.changeWorkingDirectory(tempPath);
@@ -64,10 +70,12 @@ public class FtpUtil {
             ftp.setFileType(FTP.BINARY_FILE_TYPE);
             //上传文件
             if (!ftp.storeFile(filename, input)) {
+                System.out.println("上传:" + filename + "失败" + input);
                 return result;
             }
             input.close();
             ftp.logout();
+            System.out.println("上传成功,ftp退出登录");
             result = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -134,14 +142,5 @@ public class FtpUtil {
         }
         return result;
     }
-	
-	/*public static void main(String[] args) {
-		try {  
-	        FileInputStream in=new FileInputStream(new File("E:\\download\\image\\pic.jpg"));  
-	        boolean flag = uploadFile("192.168.50.129", 21, "ftpuser", "ftpuser", "/home/ftpuser/images","/2018/05/28", "uppic.jpg", in);  
-	        System.out.println(flag);  
-	    } catch (FileNotFoundException e) {  
-	        e.printStackTrace();  
-	    }  
-	}*/
+
 }
