@@ -166,7 +166,7 @@
   </update>
 <!--  自定义方法-->
     <select id="selectAll" resultMap="BaseResultMap">
-      select * from business_apply where apply_status = '未读'
+      select * from business_apply where apply_status = #{status}
     </select>
   <update id="updateByApplyNumber">
     update business_apply set apply_status = #{applyStatus,jdbcType=VARCHAR} where apply_number = #{applyNumber,jdbcType=VARCHAR}

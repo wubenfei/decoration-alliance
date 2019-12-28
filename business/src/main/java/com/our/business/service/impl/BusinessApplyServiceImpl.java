@@ -47,16 +47,17 @@ public class BusinessApplyServiceImpl implements BusinessApplyService{
     /**
      * 自定义方法
      * @return
+     * @param status
      */
     @Override
-    public List<BusinessApply> selectAll() {
-        List<BusinessApply> list = businessApplyMapper.selectAll();
+    public List<BusinessApply> selectAll(String status) {
+        List<BusinessApply> list = businessApplyMapper.selectAll(status);
         return list;
     }
 
     @Override
     public int updateByApplyNumber(String applyNumber, String applyStatus) {
-        System.out.println("进行到这里了吗1"+applyNumber+applyStatus);
+//        System.out.println("进行到这里了吗1"+applyNumber+applyStatus);
         int i = businessApplyMapper.updateByApplyNumber(applyNumber,applyStatus);
         return i;
     }
@@ -64,7 +65,7 @@ public class BusinessApplyServiceImpl implements BusinessApplyService{
     @Override
     public BusinessApply getByApplyNumber(String applyNumber) {
         BusinessApply businessApply = businessApplyMapper.getByApplyNumber(applyNumber);
-        System.out.println("数据拿到了11111："+businessApply);
+//        System.out.println("数据拿到了11111："+businessApply);
 
         return businessApply;
     }

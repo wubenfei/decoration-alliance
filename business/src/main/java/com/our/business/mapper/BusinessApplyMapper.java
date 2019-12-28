@@ -17,7 +17,7 @@ public interface BusinessApplyMapper {
 
     int updateByPrimaryKey(BusinessApply record);
 
-    List<BusinessApply> selectAll();
+    List<BusinessApply> selectAll(String status);
 
     int updateByApplyNumber(String applyNumber, String applyStatus);
 

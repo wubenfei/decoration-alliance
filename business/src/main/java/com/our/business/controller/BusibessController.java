@@ -17,9 +17,16 @@ import java.util.List;
 public class BusibessController {
     @Resource
     private BusinessApplyService businessApplyService;
+
+    /**
+     * 获取指定状态的消息：已读，未读，删除，已处理，未处理
+     * @param status
+     * @return
+     */
     @RequestMapping("getBusinessApply")
-    public List<BusinessApply> getBA(){
-        List<BusinessApply> list =  businessApplyService.selectAll();
+    public List<BusinessApply> getBA(String status){
+        System.out.println("获取消息："+status);
+        List<BusinessApply> list =  businessApplyService.selectAll(status);
 //        System.out.println(list);
         return list;
     }
@@ -29,14 +36,14 @@ public class BusibessController {
      */
     @RequestMapping("handleStatus")
     public String handleStatus(String applyNumber, String applyStatus){
-        System.out.println("进行到这里了吗"+applyNumber+applyStatus);
+//        System.out.println("进行到这里了吗"+applyNumber+applyStatus);
         int i = businessApplyService.updateByApplyNumber(applyNumber,applyStatus);
         // 重新查询新的未读消息并返回
         return "forward:getBusinessApply";
     }
     @RequestMapping("getByApplyNumber")
     public BusinessApply getByApplyNumber(String applyNumber){
-        System.out.println("进入getByApplyNumber："+applyNumber);
+//        System.out.println("进入getByApplyNumber："+applyNumber);
         BusinessApply businessApply = businessApplyService.getByApplyNumber(applyNumber);
         return businessApply;
     }

@@ -19,7 +19,7 @@ public interface BusinessApplyService{
 
     int updateByPrimaryKey(BusinessApply record);
 //以下为自定义方法
-    List<BusinessApply> selectAll();
+    List<BusinessApply> selectAll(String status);
 
     int updateByApplyNumber(String applyNumber, String applyStatus);
 
