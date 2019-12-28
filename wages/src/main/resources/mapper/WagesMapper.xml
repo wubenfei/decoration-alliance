@@ -9,10 +9,11 @@
     <result column="wages" jdbcType="INTEGER" property="wages" />
     <result column="royalty" jdbcType="INTEGER" property="royalty" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="granted" jdbcType="VARCHAR" property="granted" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, job_number, `name`, wages, royalty, `status`
+    id, job_number, `name`, wages, royalty, `status`, `granted`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -29,9 +30,11 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Wages" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into wages (job_number, `name`, wages, 
-      royalty, `status`)
+      royalty, `status`, `granted`
+      )
     values (#{jobNumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{wages,jdbcType=INTEGER}, 
-      #{royalty,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
+      #{royalty,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{granted,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Wages" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -52,6 +55,9 @@
       <if test="status != null">
         `status`,
       </if>
+      <if test="granted != null">
+        `granted`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="jobNumber != null">
@@ -68,6 +74,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="granted != null">
+        #{granted,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -90,6 +99,9 @@
       <if test="status != null">
         `status` = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="granted != null">
+        `granted` = #{granted,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -100,10 +112,19 @@
       `name` = #{name,jdbcType=VARCHAR},
       wages = #{wages,jdbcType=INTEGER},
       royalty = #{royalty,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=VARCHAR}
+      `status` = #{status,jdbcType=VARCHAR},
+      `granted` = #{granted,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="getAll" resultMap="BaseResultMap">
-      select * from wages
+  <select id="getAll" resultMap="BaseResultMap">
+    select * from wages
+  </select>
+  <update id="update">
+<!--jobNumber, name, wages, royalty, status, granted, id-->
+    update wages set job_number=#{jobNumber},name=#{name},wages=#{wages},royalty=#{royalty},status=#{status},granted=#{granted} where id=#{id}
+  </update>
+    <select id="getAdjustment" resultType="com.ours.entity.Adjustment">
+      select wages.*,contract.contract_name,contract.contract_type from wages left join staff on wages.job_number=staff.job_number left join contract on staff.id=contract.staff_id
+      where signing_time >#{month}
     </select>
 </mapper>

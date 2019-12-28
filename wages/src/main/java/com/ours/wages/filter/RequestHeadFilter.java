@@ -13,8 +13,8 @@ public class RequestHeadFilter implements Filter{
     private ArrayList<String> allowOrigin = new ArrayList<>();
 
     public void TotalFilter() {
-        allowOrigin.add("http://127.0.0.1:8085");
-        allowOrigin.add("http://localhost:8085");
+        allowOrigin.add("http://127.0.0.1:8080");
+        allowOrigin.add("http://localhost:8080");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RequestHeadFilter implements Filter{
         if (allowOrigin.contains(origin)) {
             httpServletResponse.setHeader("Access-Control-Allow-Origin", origin);
         } else {
-            httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8085");
+            httpServletResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         }
         // INFO: DCTANT: 2019/9/19 设置允许的跨域请求头
         httpServletResponse.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, userId, token, x-requested-with, XMLHttpRequest, Accept");
