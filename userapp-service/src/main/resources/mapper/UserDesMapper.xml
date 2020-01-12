@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userappservice.mapper.UserDesMapper">
+    <resultMap id="BaseResultMap" type="com.ours.entity.UserDes">
+        <!--@mbg.generated-->
+        <!--@Table user_des-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="des_id" jdbcType="INTEGER" property="desId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_status" jdbcType="INTEGER" property="userStatus"/>
+        <result column="des_status" jdbcType="INTEGER" property="desStatus"/>
+        <result column="in" jdbcType="INTEGER" property="in"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, des_id, user_name, user_status, des_status, `in`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_des
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from user_des
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ours.entity.UserDes">
+        <!--@mbg.generated-->
+        insert into user_des (id, user_id, des_id,
+        user_name, user_status, des_status,
+        `in`)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{desId,jdbcType=INTEGER},
+        #{userName,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, #{desStatus,jdbcType=INTEGER},
+        #{in,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ours.entity.UserDes">
+        <!--@mbg.generated-->
+        insert into user_des
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="desId != null">
+                des_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userStatus != null">
+                user_status,
+            </if>
+            <if test="desStatus != null">
+                des_status,
+            </if>
+            <if test="in != null">
+                `in`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="desId != null">
+                #{desId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                #{userStatus,jdbcType=INTEGER},
+            </if>
+            <if test="desStatus != null">
+                #{desStatus,jdbcType=INTEGER},
+            </if>
+            <if test="in != null">
+                #{in,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.UserDes">
+        <!--@mbg.generated-->
+        update user_des
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="desId != null">
+                des_id = #{desId,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus,jdbcType=INTEGER},
+            </if>
+            <if test="desStatus != null">
+                des_status = #{desStatus,jdbcType=INTEGER},
+            </if>
+            <if test="in != null">
+                `in` = #{in,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.entity.UserDes">
+        <!--@mbg.generated-->
+        update user_des
+        set user_id = #{userId,jdbcType=INTEGER},
+        des_id = #{desId,jdbcType=INTEGER},
+        user_name = #{userName,jdbcType=VARCHAR},
+        user_status = #{userStatus,jdbcType=INTEGER},
+        des_status = #{desStatus,jdbcType=INTEGER},
+        `in` = #{in,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="countSuccess" resultType="int">
+        select count(id) from user_des where des_id=#{desId} and des_status=#{status}
+    </select>
+</mapper>

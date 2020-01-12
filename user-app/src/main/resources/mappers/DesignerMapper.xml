@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userapp.mapper.DesignerMapper">
+  <resultMap id="BaseResultMap" type="com.ours.entity.Designer">
+    <!--@mbg.generated-->
+    <!--@Table designer-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="designer_job" jdbcType="VARCHAR" property="designerJob" />
+    <result column="wages" jdbcType="VARCHAR" property="wages" />
+    <result column="designer_name" jdbcType="VARCHAR" property="designerName" />
+    <result column="designer_phone" jdbcType="VARCHAR" property="designerPhone" />
+    <result column="designer_email" jdbcType="VARCHAR" property="designerEmail" />
+    <result column="designer_password" jdbcType="VARCHAR" property="designerPassword" />
+    <result column="designer_status" jdbcType="VARCHAR" property="designerStatus" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="join_data" jdbcType="DATE" property="joinData" />
+    <result column="dismission_date" jdbcType="DATE" property="dismissionDate" />
+    <result column="designerid_title" jdbcType="VARCHAR" property="designeridTitle" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, designer_job, designer_name, designer_phone, designer_email, designer_password,
+    designer_status, role_name, url, join_data, dismission_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List"/>
+    from designer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from designer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Designer"
+          useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into designer (designer_job, designer_name, designer_phone,
+    designer_email, designer_password, designer_status,
+    role_name, url, join_data,
+    dismission_date)
+    values (#{designerJob,jdbcType=VARCHAR}, #{designerName,jdbcType=VARCHAR}, #{designerPhone,jdbcType=VARCHAR},
+    #{designerEmail,jdbcType=VARCHAR}, #{designerPassword,jdbcType=VARCHAR}, #{designerStatus,jdbcType=VARCHAR},
+    #{roleName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{joinData,jdbcType=DATE},
+    #{dismissionDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ours.entity.Designer"
+          useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into designer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="designerJob != null">
+        designer_job,
+      </if>
+      <if test="designerName != null">
+        designer_name,
+      </if>
+      <if test="designerPhone != null">
+        designer_phone,
+      </if>
+      <if test="designerEmail != null">
+        designer_email,
+      </if>
+      <if test="designerPassword != null">
+        designer_password,
+      </if>
+      <if test="designerStatus != null">
+        designer_status,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="joinData != null">
+        join_data,
+      </if>
+      <if test="dismissionDate != null">
+        dismission_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="designerJob != null">
+        #{designerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="designerName != null">
+        #{designerName,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPhone != null">
+        #{designerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="designerEmail != null">
+        #{designerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPassword != null">
+        #{designerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="designerStatus != null">
+        #{designerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="joinData != null">
+        #{joinData,jdbcType=DATE},
+      </if>
+      <if test="dismissionDate != null">
+        #{dismissionDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.Designer">
+    <!--@mbg.generated-->
+    update designer
+    <set>
+      <if test="designerJob != null">
+        designer_job = #{designerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="designerName != null">
+        designer_name = #{designerName,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPhone != null">
+        designer_phone = #{designerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="designerEmail != null">
+        designer_email = #{designerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPassword != null">
+        designer_password = #{designerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="designerStatus != null">
+        designer_status = #{designerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="joinData != null">
+        join_data = #{joinData,jdbcType=DATE},
+      </if>
+      <if test="dismissionDate != null">
+        dismission_date = #{dismissionDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ours.entity.Designer">
+    <!--@mbg.generated-->
+    update designer
+    set designer_job = #{designerJob,jdbcType=VARCHAR},
+    designer_name = #{designerName,jdbcType=VARCHAR},
+    designer_phone = #{designerPhone,jdbcType=VARCHAR},
+    designer_email = #{designerEmail,jdbcType=VARCHAR},
+    designer_password = #{designerPassword,jdbcType=VARCHAR},
+    designer_status = #{designerStatus,jdbcType=VARCHAR},
+    role_name = #{roleName,jdbcType=VARCHAR},
+    url = #{url,jdbcType=VARCHAR},
+    join_data = #{joinData,jdbcType=DATE},
+    dismission_date = #{dismissionDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAllDesigner" resultMap="BaseResultMap">
+    select * from designer
+  </select>
+  <update id="updateDesignerStatus">
+    update designer set designer_status=#{status} ,dismission_date=#{dismissionDate} where designer_job=#{jobNumber}
+  </update>
+  <update id="updateRoleName">
+    update designer set role_name=(
+    select staff_role_value from staff_role where staff_role_name=#{roleName}
+    ) where designer_job=#{jobNumber}
+  </update>
+  <select id="selectJobNumber" resultMap="BaseResultMap">
+    select * from designer where designer_job=#{jobNumber}
+  </select>
+  <select id="queryUserList" resultType="java.util.Map">
+    select * from user_des left join `user`
+    on
+    user_des.user_id=`user`.id
+    where
+    user.id in (
+    select user_id from user_des
+    where des_id=#{des_id}
+    )
+    and
+    des_id=#{des_id}
+    and
+    `in`=1
+  </select>
+  <delete id="changNotIn">
+    update user_des set `in`=0 where
+    id=#{id}
+  </delete>
+  <delete id="changIn">
+    update user_des set `in`=1 where
+    id=#{id}
+  </delete>
+  <select id="getUsersId" resultType="java.lang.Integer">
+    select user_id from user_des
+    where des_id=#{des_id}
+    and
+    `in`=1
+  </select>
+  <select id="getUsertitle" resultType="java.lang.String">
+        select DISTINCT (userid_title) from user
+    </select>
+  <select id="getDesignertitle" resultType="java.lang.String">
+        select DISTINCT (designerid_title) from designer
+    </select>
+  <select id="queryLastChat" resultType="java.util.Map">
+    select send_name,content,send_time from
+    chat_record
+    where
+    send_id
+    in(#{s},#{s1}) and receiver_id in(#{s},#{s1})
+    ORDER BY send_time desc LIMIT 0,1
+  </select>
+  <select id="queryOneUser" resultType="java.util.Map">
+    select * from user_des left join `user`
+    on
+    user_des.user_id=`user`.id
+    where
+    user.id in (
+    select user_id from user_des
+    where user_name=#{key}
+    and
+    des_id=#{des_id}
+    )
+    and
+    des_id=#{des_id}
+  </select>
+  <select id="getUsersIdByName" resultType="java.lang.Integer">
+    select user_id from user_des where user_name=#{key} and des_id=#{des_id}
+  </select>
+  <select id="getChatList" resultType="java.util.Map">
+    select * from
+    chat_record
+    where
+    send_id
+    in(#{s},#{s1}) and receiver_id in(#{s},#{s1})
+  </select>
+  <select id="qureyUrl" parameterType="integer" resultType="string">
+    select url from `user` where id=#{user_id}
+  </select>
+  <select id="qureyDesUrl" parameterType="integer" resultType="string">
+    select url from designer where id=#{des_id}
+  </select>
+  <select id="queryNumNotstatus" resultType="java.lang.Integer">
+    select count(status) from
+    chat_record
+    where
+    send_id
+    =#{s}
+    and
+    receiver_id=
+    #{s1}
+    and
+    status=0
+  </select>
+  <update id="changeChatListStatus">
+    update
+    chat_record
+    set
+    status=1
+    where
+    send_id
+    in(#{s},#{s1}) and receiver_id in(#{s},#{s1})
+    and
+    status=0
+  </update>
+  <select id="getMySlary" resultType="java.util.Map">
+    select wages,royalty,granted from wages where job_number=#{designerJob}
+  </select>
+  <select id="getStepList" resultType="java.util.Map">
+    select
+    contract.id,contract_name,company_name,contract.user_id,user_phone,username,contract_status,house_address
+    from
+    contract
+    left join
+    `user`
+    on
+    contract.user_id=`user`.id
+    left join
+    decoration_company
+    on
+    decoration_company_id=decoration_company.id
+    left join
+    house
+    on
+    contract_houseid=house.id
+    where
+    contract_type='装修合同'
+    and
+    designer_id=#{des_id}
+  </select>
+  <select id="getStep" resultType="java.util.Map">
+    select * from
+    step
+    where
+    contractid=#{contractid}
+  </select>
+  <select id="getDecDesList" resultType="java.lang.Integer">
+    select dec_id from des_dec where des_id=#{des_id}
+  </select>
+  <select id="queryDesList" resultType="java.util.Map">
+    select * from user_des left join `designer`
+    on
+    user_des.des_id=`designer`.id
+    where
+    designer.id in (
+    select des_id from user_des
+    where user_id=#{user_id}
+    )
+    and
+    user_id=#{user_id}
+  </select>
+  <select id="getDecorationtitle" resultType="java.lang.String">
+        select DISTINCT (decorationid_title) from decoration_company
+    </select>
+  <select id="getHome" resultType="java.util.Map">
+    select * from
+    role_app
+    left join
+    forstaff_app
+    on
+    forstaff_app.id=app
+    where
+    role=#{i}
+  </select>
+  <select id="getAllUsername" resultType="java.lang.String">
+    select user_name from user_des where des_id=#{s} and user_name like "%${keyword}%"
+  </select>
+  <select id="getUsersIdRe" resultType="java.lang.Integer">
+    select user_id from user_des
+    where des_id=#{des_id}
+    and
+    user_name=#{username}
+  </select>
+  <select id="queryUserListRe" resultType="java.util.Map">
+    select * from user_des left join `user`
+    on
+    user_des.user_id=`user`.id
+    where
+    user.id in (
+    select user_id from user_des
+    where des_id=#{des_id}
+    )
+    and
+    des_id=#{des_id}
+    and
+    user_name=#{username}
+  </select>
+  <select id="getAdjustment" resultType="com.ours.entity.Adjustment">
+    select wages.*,contract.contract_name,contract.contract_type from wages left join staff on wages.job_number=staff.job_number left join contract on staff.id=contract.staff_id
+    where signing_time >#{newString} and wages.job_number=#{jobnum}
+  </select>
+  <select id="getDessID" resultType="java.lang.Integer">
+    select des_id from user_des where user_id=#{user_id}
+  </select>
+</mapper>

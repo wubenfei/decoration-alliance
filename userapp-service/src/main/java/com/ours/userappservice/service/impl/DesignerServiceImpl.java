@@ -1,13 +1,11 @@
-package com.ours.userservice.service.impl;
+package com.ours.userappservice.service.impl;
 
 import com.ours.entity.Designer;
+import com.ours.userappservice.mapper.DesignerMapper;
+import com.ours.userappservice.service.DesignerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
-import com.ours.userservice.mapper.DesignerMapper;
-import com.ours.userservice.service.DesignerService;
-
 import java.util.Date;
 import java.util.List;
 
