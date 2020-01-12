@@ -58,12 +58,18 @@ public class DepartmentController {
         System.out.println("请求进入getDepDetail："+depId);
         // 查询部门
         Department department = departmentService.selectByDepId(depId);
+        System.out.println("查询到的部门为："+department);
         // 查询部门成员
-        System.out.println("staffController:"+staffController);
+//        System.out.println("staffController:"+staffController);
         MultiValueMap map = new LinkedMultiValueMap<String,Object>();
         map.add("depId", depId+"");
         System.out.println("即将调用postRequest：");
         List<Staff> staffs = (List<Staff>) postRequest(request, session, map, "http://staff/dep/getStaff");
+        System.out.println("查询到的员工为："+staffs);
+        // 如果该部门下没有员工，则创建一个新对象存入staffs中
+//        if(staffs.size()==0) {
+//            staffs.add(new Staff());
+//        }
         // 创建对象并存值
         DepForm depForm = new DepForm();
         depForm.setDepId(department.getDepId());
@@ -130,5 +136,16 @@ public class DepartmentController {
 //        新增部门成功后，将新数据返回
         Department dep = departmentService.selectByDepId(newDepId);
         return insert>0?dep:null;
+    }
+    @RequestMapping("modDep")
+    public String modDep(String newDepName,String newDepId,Integer id){
+        Department modDepartment = new Department();
+        modDepartment.setDepName(newDepName);
+        modDepartment.setDepId(newDepId);
+        modDepartment.setId(id);
+        int insert = departmentService.updateByPrimaryKey(modDepartment);
+//        修改部门成功后，将新数据返回
+        Department dep = departmentService.selectByDepId(newDepId);
+        return "forward:getDep";
     }
 }

@@ -24,6 +24,7 @@ public class RequestHeadFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println("已过滤请求头....");
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String origin = ((HttpServletRequest) servletRequest).getHeader("Origin");
         // INFO: DCTANT: 2019/9/19 设置允许的跨域请求源
