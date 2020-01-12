@@ -25,4 +25,6 @@ public interface DesignerMapper {
     int updateRoleName(String roleName, String jobNumber);
 
     Designer selectJobNumber(String jobNumber);
+
+    Designer selectByTelAndPassword(String tel, String password);
 }

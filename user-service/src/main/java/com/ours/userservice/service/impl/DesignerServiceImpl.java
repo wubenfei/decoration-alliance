@@ -1,13 +1,11 @@
 package com.ours.userservice.service.impl;
 
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-
 import com.ours.entity.Designer;
 import com.ours.userservice.mapper.DesignerMapper;
 import com.ours.userservice.service.DesignerService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +63,19 @@ public class DesignerServiceImpl implements DesignerService {
     @Override
     public Designer selectJobNumber(String jobNumber) {
         return designerMapper.selectJobNumber(jobNumber);
+    }
+
+    /**
+     * @Auth MrW
+     * 根据电话号码和密码查询
+     * @param tel
+     * @param password
+     * @return
+     */
+    @Override
+    public Designer selectByTelAndPassword(String tel, String password) {
+        Designer designer = designerMapper.selectByTelAndPassword(tel,password);
+        return designer;
     }
 
 }
