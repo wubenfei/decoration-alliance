@@ -138,7 +138,7 @@ public class DepartmentController {
         return insert>0?dep:null;
     }
     @RequestMapping("modDep")
-    public String modDep(String newDepName,String newDepId,Integer id){
+    public List<Department> modDep(String newDepName, String newDepId, Integer id){
         Department modDepartment = new Department();
         modDepartment.setDepName(newDepName);
         modDepartment.setDepId(newDepId);
@@ -146,6 +146,8 @@ public class DepartmentController {
         int insert = departmentService.updateByPrimaryKey(modDepartment);
 //        修改部门成功后，将新数据返回
         Department dep = departmentService.selectByDepId(newDepId);
-        return "forward:getDep";
+        List<Department> deps = departmentService.selectDeps();
+        System.out.println(deps);
+        return deps;
     }
 }

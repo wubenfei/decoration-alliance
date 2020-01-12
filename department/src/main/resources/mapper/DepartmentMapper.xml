@@ -72,7 +72,7 @@
 <!--以下为自定义-->
   <!--  select all department-->
   <select id="selectDeps" resultType="com.ours.entity.Department">
-    select * from department
+    select * from department order by dep_id desc
   </select>
   <!--    根据部门编号查询部门-->
   <select id="selectByDepId" resultMap="BaseResultMap">
