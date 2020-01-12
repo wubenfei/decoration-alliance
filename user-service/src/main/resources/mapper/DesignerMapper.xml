@@ -177,4 +177,7 @@
         select staff_role_value from staff_role where staff_role_name=#{roleName}
         ) where designer_job=#{jobNumber}
     </update>
+    <select id="selectByTelAndPassword" resultMap="BaseResultMap">
+        select * from designer where designer_phone = #{tel} and designer_password = #{password}
+    </select>
 </mapper>
