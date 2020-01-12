@@ -1,22 +1,26 @@
 package com.ours.friendlyCompany.controller;
 
-import com.ours.friendlyCompany.dao.FriendlycompanyMapper;
 import com.ours.friendlyCompany.entity.DecorationCompany;
+import com.ours.friendlyCompany.entity.Designer;
 import com.ours.friendlyCompany.service.FriendlycompanyService;
 import com.ours.friendlyCompany.utils.FtpUtil;
 import com.ours.friendlyCompany.utils.IDUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -123,5 +127,21 @@ public class FriendlyCompanyController {
         } else {
             return "请选择入驻团队类型!";
         }
+    }
+    /**
+     * Auth: MrW
+     * 根据手机号和密码查询装修公司
+     */
+    @RequestMapping("getDecorationCompany")
+    public DecorationCompany getDC(String tel, String password){
+        System.out.println("getDecorationCompany:"+tel+password);
+        DecorationCompany decorationCompany = fcm.selectByTelAndPassword(tel,password);
+        return decorationCompany;
+    }
+    @RequestMapping("getDesigner")
+    public Designer getDesigner(String tel,String password){
+        System.out.println("getDesigner:"+tel+password);
+        Designer designer = fcm.selectDesignerByTelAndPassword(tel,password);
+        return designer;
     }
 }
