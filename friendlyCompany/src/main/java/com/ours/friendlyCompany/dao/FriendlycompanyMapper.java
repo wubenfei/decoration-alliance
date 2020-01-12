@@ -1,8 +1,8 @@
 package com.ours.friendlyCompany.dao;
 
+import com.ours.friendlyCompany.entity.Designer;
 import com.ours.friendlyCompany.entity.Friendlycompany;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,4 +21,5 @@ public interface FriendlycompanyMapper {
 
     List<Map<String, Object>> queryAllValue();
 
+    Designer selectDesignerByTelAndPassword(String tel, String password);
 }

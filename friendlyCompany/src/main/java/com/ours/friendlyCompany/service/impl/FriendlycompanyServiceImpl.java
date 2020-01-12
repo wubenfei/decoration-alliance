@@ -3,6 +3,7 @@ package com.ours.friendlyCompany.service.impl;
 import com.ours.friendlyCompany.dao.DecorationCompanyMapper;
 import com.ours.friendlyCompany.dao.FriendlycompanyMapper;
 import com.ours.friendlyCompany.entity.DecorationCompany;
+import com.ours.friendlyCompany.entity.Designer;
 import com.ours.friendlyCompany.service.FriendlycompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,15 @@ public class FriendlycompanyServiceImpl implements FriendlycompanyService {
     public int insertAcompany(DecorationCompany decorationCompany) {
         //return friendlycompanyMapper.insertBySome(company_name,company_address,company_phone,company_rephone,company_idcard,company_idname,intime);
         return decorationCompanyMapper.insertSelective(decorationCompany);
+    }
+
+    @Override
+    public DecorationCompany selectByTelAndPassword(String tel, String password) {
+        return decorationCompanyMapper.selectByTelAndPassword(tel,password);
+    }
+
+    @Override
+    public Designer selectDesignerByTelAndPassword(String tel, String password) {
+        return friendlycompanyMapper.selectDesignerByTelAndPassword(tel,password);
     }
 }

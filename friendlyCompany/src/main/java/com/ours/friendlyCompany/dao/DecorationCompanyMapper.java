@@ -14,4 +14,7 @@ public interface DecorationCompanyMapper {
     int updateByPrimaryKeySelective(DecorationCompany record);
 
     int updateByPrimaryKey(DecorationCompany record);
+
+    DecorationCompany selectByTelAndPassword(String tel, String password);
+
 }
