@@ -211,7 +211,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="selectDepMembersByDepId" parameterType="STRING" resultType="com.ours.entity.Staff">
-      select * from staff where id in
-      (select user_id from staff_dep where dep_id = #{depId})
+      select * from staff where job_number in
+      (select job_number from staff_dep where dep_id = #{depId})
     </select>
 </mapper>

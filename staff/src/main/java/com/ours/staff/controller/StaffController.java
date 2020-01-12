@@ -28,7 +28,7 @@ public class StaffController {
     public List<Staff> selectDepMembersByDepId(String depId){
         System.out.println("selectDepMembersByDepId被调用了:"+depId);
         System.out.println("测试数据");
-        System.out.println(staffMapper);
+        System.out.println("staffMapper:"+staffMapper);
 //        List<Staff> staffs = staffService.selectDepMembersByDepId(depId);
         List<Staff> staffs = staffMapper.selectDepMembersByDepId(depId);
         System.out.println("staffs.size()"+staffs.size());

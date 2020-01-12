@@ -1,21 +1,17 @@
 package com.ours.entity;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-=======
 
-import java.sql.Date;
 
->>>>>>> origin/master
 public class BusinessApply {
     /**
     * 主键id
@@ -45,19 +41,13 @@ public class BusinessApply {
     /**
     * 提交时间
     */
-<<<<<<< HEAD
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-=======
->>>>>>> origin/master
     private Date submitDate;
 
     /**
     * 审核通过时间
     */
-<<<<<<< HEAD
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-=======
->>>>>>> origin/master
     private Date verifyDate;
 
     /**
@@ -74,13 +64,9 @@ public class BusinessApply {
     * 合同附件url
     */
     private String fileUrl;
-<<<<<<< HEAD
     /**
     * 合同附件名字
     */
-    private String fileName;
-=======
-
     private String fileName;
 
     public String getApplyUser() {
@@ -180,5 +166,4 @@ public class BusinessApply {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
->>>>>>> origin/master
 }

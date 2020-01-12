@@ -5,7 +5,7 @@ import com.ours.entity.Designer;
 import java.util.Date;
 import java.util.List;
 
-public interface DesignerService {
+public interface DesignerService{
 
 
     int deleteByPrimaryKey(Integer id);
@@ -28,5 +28,5 @@ public interface DesignerService {
 
     Designer selectJobNumber(String jobNumber);
 
-    Designer selectByTelAndPassword(String tel, String password);
+    Designer selectByJobNumberAndPassword(String jobNumber,String password);
 }

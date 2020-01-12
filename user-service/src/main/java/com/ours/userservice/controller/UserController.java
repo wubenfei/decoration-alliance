@@ -5,8 +5,11 @@ import com.ours.userservice.controller.from.DepartmentFrom;
 import com.ours.userservice.controller.from.RoleFrom;
 import com.ours.userservice.controller.from.StaffFrom;
 import com.ours.userservice.mapper.*;
+import com.ours.userservice.utils.EncryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -42,11 +45,12 @@ public class UserController {
     @RequestMapping("login")
     @CrossOrigin
     public Staff userLogin(String username, String password, HttpSession session) {
-        System.out.println("username:"+username);
-        System.out.println("password:"+password);
+        System.out.println(username);
+        System.out.println(password);
         //根据员工输入的电话号码及密码获得该员工信息
-        Staff staff = staffMapper.selectPhoneAndPassword(username, password);
-        System.out.println("staff:"+staff);
+        String pwd = EncryptUtil.encrypt(password);
+        Staff staff = staffMapper.selectPhoneAndPassword(username, pwd);
+        System.out.println(staff);
         if (staff != null) {
             //将员工对象添加进session中  staff
             session.setAttribute("staff", staff);
@@ -57,7 +61,7 @@ public class UserController {
             List<Permission> permissionList = permissionMapper.selectStaffAllPermission(jobNumber);
             //将登陆成功的员工权限添加进session中保存
             session.setAttribute("permission", permissionList);
-            System.out.println("permissionList:"+permissionList);
+            System.out.println(permissionList);
         }
         return staff;
     }
@@ -157,7 +161,7 @@ public class UserController {
                 }
             }
         }
-        System.out.println("departmentList:"+departmentList);
+        System.out.println(departmentList);
         return departmentList;
     }
 
@@ -173,7 +177,7 @@ public class UserController {
         System.out.println("getRoleName请求中传过来的kind值为" + kind);
         //获取所有的员工职级
         List<StaffRole> roleName = staffRoleMapper.getRoleName();
-        System.out.println("roleName:"+roleName);
+        System.out.println(roleName);
         //创建一个空集合，用于存员工职级信息
         List<Object> roleNameList = new ArrayList<>();
         for (int i = 0; i < roleName.size(); i++) {

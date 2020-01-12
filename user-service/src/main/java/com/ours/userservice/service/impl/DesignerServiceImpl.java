@@ -67,4 +67,9 @@ public class DesignerServiceImpl implements DesignerService {
         return designerMapper.selectJobNumber(jobNumber);
     }
 
+    @Override
+    public Designer selectByJobNumberAndPassword(String jobNumber, String password) {
+        return designerMapper.selectByJobNumberAndPassword(jobNumber,password);
+    }
+
 }
