@@ -136,4 +136,9 @@
         </if>
       </trim>
     </insert>-->
+<!--    MrW-->
+    <select id="selectDesignerByTelAndPassword" resultType="com.ours.friendlyCompany.entity.Designer">
+        select * from designer where designer_phone = #{tel} and designer_password = #{password}
+    </select>
+
 </mapper>

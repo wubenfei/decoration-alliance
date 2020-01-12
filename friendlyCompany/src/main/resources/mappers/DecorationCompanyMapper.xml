@@ -177,4 +177,7 @@
         company_url = #{companyUrl,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
+    <select id="selectByTelAndPassword" resultMap="BaseResultMap">
+        select * from decoration_company where company_phone = #{tel} and password = #{password}
+    </select>
 </mapper>
