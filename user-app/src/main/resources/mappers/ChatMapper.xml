@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userapp.mapper.ChatMapper">
+  <resultMap id="BaseResultMap" type="com.ours.userapp.entity.Chat">
+    <!--@mbg.generated-->
+    <!--@Table chat-->
+    <id column="chat_id" jdbcType="INTEGER" property="chatId" />
+    <result column="chat_text" jdbcType="LONGVARCHAR" property="chatText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    chat_id, chat_text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from chat
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from chat
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ours.userapp.entity.Chat">
+    <!--@mbg.generated-->
+    insert into chat (chat_id, chat_text)
+    values (#{chatId,jdbcType=INTEGER}, #{chatText,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ours.userapp.entity.Chat">
+    <!--@mbg.generated-->
+    insert into chat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chatId != null">
+        chat_id,
+      </if>
+      <if test="chatText != null">
+        chat_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chatId != null">
+        #{chatId,jdbcType=INTEGER},
+      </if>
+      <if test="chatText != null">
+        #{chatText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ours.userapp.entity.Chat">
+    <!--@mbg.generated-->
+    update chat
+    <set>
+      <if test="chatText != null">
+        chat_text = #{chatText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ours.userapp.entity.Chat">
+    <!--@mbg.generated-->
+    update chat
+    set chat_text = #{chatText,jdbcType=LONGVARCHAR}
+    where chat_id = #{chatId,jdbcType=INTEGER}
+  </update>
+    <delete id="addmessage">
+      insert into chat values (default ,#{message})
+    </delete>
+  <select id="queryChat" resultType="java.lang.String">
+    select chat_text from chat order by chat_id desc limit #{pageIndex},10
+  </select>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.ours.entity;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +11,11 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+=======
+
+import java.sql.Date;
+
+>>>>>>> origin/master
 public class BusinessApply {
     /**
     * 主键id
@@ -39,13 +45,19 @@ public class BusinessApply {
     /**
     * 提交时间
     */
+<<<<<<< HEAD
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+=======
+>>>>>>> origin/master
     private Date submitDate;
 
     /**
     * 审核通过时间
     */
+<<<<<<< HEAD
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+=======
+>>>>>>> origin/master
     private Date verifyDate;
 
     /**
@@ -62,8 +74,111 @@ public class BusinessApply {
     * 合同附件url
     */
     private String fileUrl;
+<<<<<<< HEAD
     /**
     * 合同附件名字
     */
     private String fileName;
+=======
+
+    private String fileName;
+
+    public String getApplyUser() {
+        return applyUser;
+    }
+
+    public void setApplyUser(String applyUser) {
+        this.applyUser = applyUser;
+    }
+
+    private String applyUser;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getApplyTitle() {
+        return applyTitle;
+    }
+
+    public void setApplyTitle(String applyTitle) {
+        this.applyTitle = applyTitle;
+    }
+
+    public String getApplyType() {
+        return applyType;
+    }
+
+    public void setApplyType(String applyType) {
+        this.applyType = applyType;
+    }
+
+    public String getApplyNumber() {
+        return applyNumber;
+    }
+
+    public void setApplyNumber(String applyNumber) {
+        this.applyNumber = applyNumber;
+    }
+
+    public Double getFundDemand() {
+        return fundDemand;
+    }
+
+    public void setFundDemand(Double fundDemand) {
+        this.fundDemand = fundDemand;
+    }
+
+    public Date getSubmitDate() {
+        return submitDate;
+    }
+
+    public void setSubmitDate(Date submitDate) {
+        this.submitDate = submitDate;
+    }
+
+    public Date getVerifyDate() {
+        return verifyDate;
+    }
+
+    public void setVerifyDate(Date verifyDate) {
+        this.verifyDate = verifyDate;
+    }
+
+    public String getApplyContent() {
+        return applyContent;
+    }
+
+    public void setApplyContent(String applyContent) {
+        this.applyContent = applyContent;
+    }
+
+    public String getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void setApplyStatus(String applyStatus) {
+        this.applyStatus = applyStatus;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+>>>>>>> origin/master
 }

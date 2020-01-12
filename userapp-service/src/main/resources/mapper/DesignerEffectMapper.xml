@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userappservice.mapper.DesignerEffectMapper">
+    <resultMap id="BaseResultMap" type="com.ours.entity.DesignerEffect">
+        <!--@mbg.generated-->
+        <!--@Table designer_effect-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="designer_id" jdbcType="INTEGER" property="designerId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="designer_img1" jdbcType="VARCHAR" property="designerImg1"/>
+        <result column="designer_img2" jdbcType="VARCHAR" property="designerImg2"/>
+        <result column="designer_img3" jdbcType="VARCHAR" property="designerImg3"/>
+        <result column="designer_img4" jdbcType="VARCHAR" property="designerImg4"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, designer_id, user_id, designer_img1, designer_img2, designer_img3, designer_img4
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from designer_effect
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from designer_effect
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ours.entity.DesignerEffect">
+        <!--@mbg.generated-->
+        insert into designer_effect (id, designer_id, user_id,
+        designer_img1, designer_img2, designer_img3,
+        designer_img4)
+        values (#{id,jdbcType=INTEGER}, #{designerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+        #{designerImg1,jdbcType=VARCHAR}, #{designerImg2,jdbcType=VARCHAR}, #{designerImg3,jdbcType=VARCHAR},
+        #{designerImg4,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ours.entity.DesignerEffect">
+        <!--@mbg.generated-->
+        insert into designer_effect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="designerId != null">
+                designer_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="designerImg1 != null">
+                designer_img1,
+            </if>
+            <if test="designerImg2 != null">
+                designer_img2,
+            </if>
+            <if test="designerImg3 != null">
+                designer_img3,
+            </if>
+            <if test="designerImg4 != null">
+                designer_img4,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="designerId != null">
+                #{designerId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="designerImg1 != null">
+                #{designerImg1,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg2 != null">
+                #{designerImg2,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg3 != null">
+                #{designerImg3,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg4 != null">
+                #{designerImg4,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.DesignerEffect">
+        <!--@mbg.generated-->
+        update designer_effect
+        <set>
+            <if test="designerId != null">
+                designer_id = #{designerId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="designerImg1 != null">
+                designer_img1 = #{designerImg1,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg2 != null">
+                designer_img2 = #{designerImg2,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg3 != null">
+                designer_img3 = #{designerImg3,jdbcType=VARCHAR},
+            </if>
+            <if test="designerImg4 != null">
+                designer_img4 = #{designerImg4,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ours.entity.DesignerEffect">
+        <!--@mbg.generated-->
+        update designer_effect
+        set designer_id = #{designerId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=INTEGER},
+        designer_img1 = #{designerImg1,jdbcType=VARCHAR},
+        designer_img2 = #{designerImg2,jdbcType=VARCHAR},
+        designer_img3 = #{designerImg3,jdbcType=VARCHAR},
+        designer_img4 = #{designerImg4,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="getDesignerEffects" resultType="java.util.Map">
+    select * from designer_effect
+  </select>
+</mapper>

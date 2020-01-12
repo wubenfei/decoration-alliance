@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.userappservice.mapper.ContractMapper">
+  <resultMap id="BaseResultMap" type="com.ours.entity.Contract">
+    <!--@mbg.generated-->
+    <!--@Table contract-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_idcard" jdbcType="VARCHAR" property="userIdcard" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="designer_id" jdbcType="INTEGER" property="designerId" />
+    <result column="designer_idcard" jdbcType="VARCHAR" property="designerIdcard" />
+    <result column="designer_phone" jdbcType="VARCHAR" property="designerPhone" />
+    <result column="decoration_company_id" jdbcType="INTEGER" property="decorationCompanyId" />
+    <result column="decoration_company_idcard" jdbcType="VARCHAR" property="decorationCompanyIdcard" />
+    <result column="decoration_company_phone" jdbcType="VARCHAR" property="decorationCompanyPhone" />
+    <result column="staff_id" jdbcType="INTEGER" property="staffId" />
+    <result column="staff_card" jdbcType="VARCHAR" property="staffCard" />
+    <result column="staff_phone" jdbcType="VARCHAR" property="staffPhone" />
+    <result column="contract_number" jdbcType="VARCHAR" property="contractNumber" />
+    <result column="contract_name" jdbcType="VARCHAR" property="contractName" />
+    <result column="signing_time" jdbcType="TIMESTAMP" property="signingTime" />
+    <result column="validity_of_contract" jdbcType="VARCHAR" property="validityOfContract" />
+    <result column="due_time" jdbcType="TIMESTAMP" property="dueTime" />
+    <result column="content_of_contract" jdbcType="VARCHAR" property="contentOfContract" />
+    <result column="supplementary_contents_of_the_contract" jdbcType="VARCHAR" property="supplementaryContentsOfTheContract" />
+    <result column="contract_type" jdbcType="VARCHAR" property="contractType" />
+    <result column="contract_status" jdbcType="VARCHAR" property="contractStatus" />
+    <result column="contract_houseid" jdbcType="INTEGER" property="contractHouseid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, user_idcard, user_phone, designer_id, designer_idcard, designer_phone, 
+    decoration_company_id, decoration_company_idcard, decoration_company_phone, staff_id, 
+    staff_card, staff_phone, contract_number, contract_name, signing_time, validity_of_contract, 
+    due_time, content_of_contract, supplementary_contents_of_the_contract, contract_type, 
+    contract_status, contract_houseid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from contract
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from contract
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ours.entity.Contract">
+    <!--@mbg.generated-->
+    insert into contract (id, user_id, user_idcard, 
+      user_phone, designer_id, designer_idcard, 
+      designer_phone, decoration_company_id, decoration_company_idcard, 
+      decoration_company_phone, staff_id, staff_card, 
+      staff_phone, contract_number, contract_name, 
+      signing_time, validity_of_contract, due_time, 
+      content_of_contract, supplementary_contents_of_the_contract, 
+      contract_type, contract_status, contract_houseid
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userIdcard,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{designerId,jdbcType=INTEGER}, #{designerIdcard,jdbcType=VARCHAR}, 
+      #{designerPhone,jdbcType=VARCHAR}, #{decorationCompanyId,jdbcType=INTEGER}, #{decorationCompanyIdcard,jdbcType=VARCHAR}, 
+      #{decorationCompanyPhone,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{staffCard,jdbcType=VARCHAR}, 
+      #{staffPhone,jdbcType=VARCHAR}, #{contractNumber,jdbcType=VARCHAR}, #{contractName,jdbcType=VARCHAR}, 
+      #{signingTime,jdbcType=TIMESTAMP}, #{validityOfContract,jdbcType=VARCHAR}, #{dueTime,jdbcType=TIMESTAMP}, 
+      #{contentOfContract,jdbcType=VARCHAR}, #{supplementaryContentsOfTheContract,jdbcType=VARCHAR}, 
+      #{contractType,jdbcType=VARCHAR}, #{contractStatus,jdbcType=VARCHAR}, #{contractHouseid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ours.entity.Contract">
+    <!--@mbg.generated-->
+    insert into contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userIdcard != null">
+        user_idcard,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="designerId != null">
+        designer_id,
+      </if>
+      <if test="designerIdcard != null">
+        designer_idcard,
+      </if>
+      <if test="designerPhone != null">
+        designer_phone,
+      </if>
+      <if test="decorationCompanyId != null">
+        decoration_company_id,
+      </if>
+      <if test="decorationCompanyIdcard != null">
+        decoration_company_idcard,
+      </if>
+      <if test="decorationCompanyPhone != null">
+        decoration_company_phone,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="staffCard != null">
+        staff_card,
+      </if>
+      <if test="staffPhone != null">
+        staff_phone,
+      </if>
+      <if test="contractNumber != null">
+        contract_number,
+      </if>
+      <if test="contractName != null">
+        contract_name,
+      </if>
+      <if test="signingTime != null">
+        signing_time,
+      </if>
+      <if test="validityOfContract != null">
+        validity_of_contract,
+      </if>
+      <if test="dueTime != null">
+        due_time,
+      </if>
+      <if test="contentOfContract != null">
+        content_of_contract,
+      </if>
+      <if test="supplementaryContentsOfTheContract != null">
+        supplementary_contents_of_the_contract,
+      </if>
+      <if test="contractType != null">
+        contract_type,
+      </if>
+      <if test="contractStatus != null">
+        contract_status,
+      </if>
+      <if test="contractHouseid != null">
+        contract_houseid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userIdcard != null">
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="designerId != null">
+        #{designerId,jdbcType=INTEGER},
+      </if>
+      <if test="designerIdcard != null">
+        #{designerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPhone != null">
+        #{designerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationCompanyId != null">
+        #{decorationCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="decorationCompanyIdcard != null">
+        #{decorationCompanyIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationCompanyPhone != null">
+        #{decorationCompanyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCard != null">
+        #{staffCard,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null">
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null">
+        #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="signingTime != null">
+        #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validityOfContract != null">
+        #{validityOfContract,jdbcType=VARCHAR},
+      </if>
+      <if test="dueTime != null">
+        #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentOfContract != null">
+        #{contentOfContract,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementaryContentsOfTheContract != null">
+        #{supplementaryContentsOfTheContract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null">
+        #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractHouseid != null">
+        #{contractHouseid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ours.entity.Contract">
+    <!--@mbg.generated-->
+    update contract
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userIdcard != null">
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="designerId != null">
+        designer_id = #{designerId,jdbcType=INTEGER},
+      </if>
+      <if test="designerIdcard != null">
+        designer_idcard = #{designerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="designerPhone != null">
+        designer_phone = #{designerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationCompanyId != null">
+        decoration_company_id = #{decorationCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="decorationCompanyIdcard != null">
+        decoration_company_idcard = #{decorationCompanyIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="decorationCompanyPhone != null">
+        decoration_company_phone = #{decorationCompanyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCard != null">
+        staff_card = #{staffCard,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNumber != null">
+        contract_number = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contractName != null">
+        contract_name = #{contractName,jdbcType=VARCHAR},
+      </if>
+      <if test="signingTime != null">
+        signing_time = #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validityOfContract != null">
+        validity_of_contract = #{validityOfContract,jdbcType=VARCHAR},
+      </if>
+      <if test="dueTime != null">
+        due_time = #{dueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentOfContract != null">
+        content_of_contract = #{contentOfContract,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementaryContentsOfTheContract != null">
+        supplementary_contents_of_the_contract = #{supplementaryContentsOfTheContract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractType != null">
+        contract_type = #{contractType,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null">
+        contract_status = #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractHouseid != null">
+        contract_houseid = #{contractHouseid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ours.entity.Contract">
+    <!--@mbg.generated-->
+    update contract
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      designer_id = #{designerId,jdbcType=INTEGER},
+      designer_idcard = #{designerIdcard,jdbcType=VARCHAR},
+      designer_phone = #{designerPhone,jdbcType=VARCHAR},
+      decoration_company_id = #{decorationCompanyId,jdbcType=INTEGER},
+      decoration_company_idcard = #{decorationCompanyIdcard,jdbcType=VARCHAR},
+      decoration_company_phone = #{decorationCompanyPhone,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      staff_card = #{staffCard,jdbcType=VARCHAR},
+      staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      contract_number = #{contractNumber,jdbcType=VARCHAR},
+      contract_name = #{contractName,jdbcType=VARCHAR},
+      signing_time = #{signingTime,jdbcType=TIMESTAMP},
+      validity_of_contract = #{validityOfContract,jdbcType=VARCHAR},
+      due_time = #{dueTime,jdbcType=TIMESTAMP},
+      content_of_contract = #{contentOfContract,jdbcType=VARCHAR},
+      supplementary_contents_of_the_contract = #{supplementaryContentsOfTheContract,jdbcType=VARCHAR},
+      contract_type = #{contractType,jdbcType=VARCHAR},
+      contract_status = #{contractStatus,jdbcType=VARCHAR},
+      contract_houseid = #{contractHouseid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getContractList" resultMap="BaseResultMap">
+    select * from contract where user_id=#{userId}
+  </select>
+  <select id="selectByContractNumber" resultMap="BaseResultMap">
+      select * from
+         step
+      where
+         contractid=#{contractNumber}
+  </select>
+</mapper>
