@@ -1,48 +1,46 @@
 package com.ours.contract.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     /**
-     * 角色id
-     */
+    * 角色id
+    */
     private Integer id;
 
     /**
-     * 用户名
-     */
+    * 用户名
+    */
     private String username;
 
     /**
-     * 电话
-     */
+    * 电话
+    */
     private String phone;
 
     /**
-     * 邮箱
-     */
+    * 邮箱
+    */
     private String email;
 
     /**
-     * 密码
-     */
+    * 密码
+    */
     private String password;
 
     /**
-     * '状态:正常,锁定,注销'
-     */
+    * '状态:正常,锁定,注销'
+    */
     private String status;
 
     /**
-     * 头像地址
-     */
+    * 头像地址
+    */
     private String url;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -92,20 +90,35 @@ public class User {
         this.url = url;
     }
 
+    public String getUseridTitle() {
+        return useridTitle;
+    }
+
+    public void setUseridTitle(String useridTitle) {
+        this.useridTitle = useridTitle;
+    }
+
+    private String useridTitle;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", phone=").append(phone);
-        sb.append(", email=").append(email);
-        sb.append(", password=").append(password);
-        sb.append(", status=").append(status);
-        sb.append(", url=").append(url);
-        sb.append("]");
-        return sb.toString();
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", url='" + url + '\'' +
+                ", useridTitle='" + useridTitle + '\'' +
+                '}';
     }
 }

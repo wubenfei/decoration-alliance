@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ours.staff.mapper.WagesMapper">
+  <resultMap id="BaseResultMap" type="tem.Wages">
+    <!--@mbg.generated-->
+    <!--@Table wages-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="job_number" jdbcType="VARCHAR" property="jobNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="wages" jdbcType="INTEGER" property="wages" />
+    <result column="royalty" jdbcType="INTEGER" property="royalty" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="granted" jdbcType="VARCHAR" property="granted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, job_number, `name`, wages, royalty, `status`, `granted`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from wages
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from wages
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="tem.Wages" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into wages (job_number, `name`, wages, 
+      royalty, `status`, `granted`
+      )
+    values (#{jobNumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{wages,jdbcType=INTEGER}, 
+      #{royalty,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{granted,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="tem.Wages" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into wages
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobNumber != null">
+        job_number,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="wages != null">
+        wages,
+      </if>
+      <if test="royalty != null">
+        royalty,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="granted != null">
+        `granted`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobNumber != null">
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="wages != null">
+        #{wages,jdbcType=INTEGER},
+      </if>
+      <if test="royalty != null">
+        #{royalty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="granted != null">
+        #{granted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tem.Wages">
+    <!--@mbg.generated-->
+    update wages
+    <set>
+      <if test="jobNumber != null">
+        job_number = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="wages != null">
+        wages = #{wages,jdbcType=INTEGER},
+      </if>
+      <if test="royalty != null">
+        royalty = #{royalty,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="granted != null">
+        `granted` = #{granted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tem.Wages">
+    <!--@mbg.generated-->
+    update wages
+    set job_number = #{jobNumber,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      wages = #{wages,jdbcType=INTEGER},
+      royalty = #{royalty,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
+      `granted` = #{granted,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

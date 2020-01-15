@@ -45,7 +45,7 @@ public class FriendlyCompanyController {
     @Autowired
     private FriendlycompanyService fcm;
     //规定文件格式
-    private List<String> sList = Arrays.asList("doc", "docx", "pdf");
+    private List<String> sList = Arrays.asList(".doc", ".docx", ".pdf");
 
     /**
      * 得到所有的入驻类型:只有装修团队

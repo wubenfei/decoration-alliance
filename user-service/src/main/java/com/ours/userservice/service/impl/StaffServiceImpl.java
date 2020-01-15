@@ -10,6 +10,7 @@ import com.ours.userservice.service.StaffService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StaffServiceImpl implements StaffService {
@@ -48,7 +49,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff selectPhoneAndPassword(String username, String password) {
+    public Map<String, Object> selectPhoneAndPassword(String username, String password) {
         return staffMapper.selectPhoneAndPassword(username, password);
     }
 

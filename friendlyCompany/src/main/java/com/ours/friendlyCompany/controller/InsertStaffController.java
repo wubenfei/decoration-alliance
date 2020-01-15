@@ -83,6 +83,7 @@ public class InsertStaffController {
             designer.setDesignerPhone(phone);
             designer.setTel(tel);
             designer.setJoinData(join_date);
+            designer.setIdCard(id_card);
             int i = as.insertDesigner(designer);
             if (i == 1) {
                 return i + "";

@@ -211,8 +211,22 @@
         dismission_date = #{dismissionDate,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <select id="selectPhoneAndPassword" parameterType="string" resultMap="BaseResultMap">
-        select * from staff where phone=#{username} and password=#{password}
+    <select id="selectPhoneAndPassword" parameterType="string" resultType="java.util.Map">
+        select * from staff
+        left join
+        stagethree.staff_dep
+        on
+        staff_dep.job_number=staff.job_number
+        left join stagethree.department
+        on
+        staff_dep.dep_id=department.dep_id
+        left join
+        staffloginmessage
+        on
+        staff.id=staffloginmessage.staff_id
+        where
+        staff.phone=#{username} and staff.password=#{password}
+        ORDER BY userlogin_time desc LIMIT 0,1
     </select>
     <select id="selectAllStaff" resultMap="BaseResultMap">
       select * from staff

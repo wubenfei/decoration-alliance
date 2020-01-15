@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -33,7 +34,6 @@ public class UserController {
     private StaffRoleMapper staffRoleMapper;
     @Resource
     private StaffDepMapper staffDepMapper;
-
     /**
      * 登录请求
      *
@@ -44,19 +44,22 @@ public class UserController {
      */
     @RequestMapping("login")
     @CrossOrigin
-    public Staff userLogin(String username, String password, HttpSession session) {
+    public Map<String,Object> userLogin(String username, String password, HttpSession session) {
         System.out.println(username);
         System.out.println(password);
         //根据员工输入的电话号码及密码获得该员工信息
         String pwd = EncryptUtil.encrypt(password);
-        Staff staff = staffMapper.selectPhoneAndPassword(username, pwd);
+        Map<String,Object> staff = staffMapper.selectPhoneAndPassword(username, pwd);
         System.out.println(staff);
         if (staff != null) {
+            Date userlogin_time = (Date)staff.get("userlogin_time");
+            String userlo=new SimpleDateFormat("yy-MM-dd HH:mm").format(userlogin_time);
+            staff.put("userlogin_time",userlo);
             //将员工对象添加进session中  staff
             session.setAttribute("staff", staff);
             //获取员工id
 //            Integer id = staff.getId();
-            String jobNumber = staff.getJobNumber();
+            String jobNumber = (String) staff.get("job_number");
             //根据员工id查询出该员工的所有权限信息
             List<Permission> permissionList = permissionMapper.selectStaffAllPermission(jobNumber);
             //将登陆成功的员工权限添加进session中保存

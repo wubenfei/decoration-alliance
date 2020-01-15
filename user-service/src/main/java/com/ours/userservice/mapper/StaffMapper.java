@@ -4,6 +4,7 @@ import com.ours.entity.Staff;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface StaffMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,7 +19,7 @@ public interface StaffMapper {
 
     int updateByPrimaryKey(Staff record);
 
-    Staff selectPhoneAndPassword(String username, String password);
+    Map<String,Object> selectPhoneAndPassword(String username, String password);
 
     List<Staff> selectAllStaff();
 

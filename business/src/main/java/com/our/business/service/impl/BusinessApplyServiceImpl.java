@@ -51,7 +51,9 @@ public class BusinessApplyServiceImpl implements BusinessApplyService{
      */
     @Override
     public List<BusinessApply> selectAll(String status) {
+        System.out.println("impl中查询apply信息...");
         List<BusinessApply> list = businessApplyMapper.selectAll(status);
+        System.out.println(list);
         return list;
     }
 

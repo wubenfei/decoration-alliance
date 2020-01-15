@@ -69,6 +69,10 @@ public class ContractMessageController {
                 int user_id = (int) map.get("user_id");
                 //获取甲方姓名
                 User user = cms.getUsername(user_id);
+                System.out.println("user+++++++++++++++++++++++++++");
+                System.out.println(user);
+                System.out.println("map+++++++++++++++++++++++++++");
+                System.out.println(map);
                 map.put("user_name", user.getUsername());
                 //时间格式转字符串
                 String ymdMhs = DateUtils.getYmdMhs(due_time);

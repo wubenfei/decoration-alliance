@@ -26,5 +26,5 @@ public interface DesignerMapper {
 
     Designer selectJobNumber(String jobNumber);
 
-    Designer selectByJobNumberAndPassword(String jobNumber,String password);
+    Designer selectByJobNumberAndPassword(String jobNumber, String password);
 }
